@@ -24,6 +24,14 @@ export default function App() {
             </div>
             </* Main */ MaxWidthWrapper>
                 <div className="flex flex-col p-8">
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                            <AccordionContent>
+                                Yes. It adheres to the WAI-ARIA design pattern.
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </div>
             </MaxWidthWrapper>
         </div>
