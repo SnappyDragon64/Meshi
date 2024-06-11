@@ -6,7 +6,7 @@ const Main = () => {
         <main>
             <MaxWidthWrapper>
                 <div className="flex flex-col p-8">
-                    <p className="text-white">
+                    <p className="text-theme-text-color">
                         A calculator for AWC&apos;s Dungeon Challenge: Training Grounds.
                     </p>
                     <Enemies/>

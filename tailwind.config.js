@@ -32,8 +32,13 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       colors: {
-        'theme-color-light': '#4b2b2b',
-        'theme-color-dark': '#3d2121',
+        'theme-color-highlight': '#311616',
+        'theme-color-header': '#311616',
+        'theme-color-primary': '#311616',
+        'theme-color-secondary': '#1a0b0b',
+        'theme-color-tertiary': '#000000',
+        'theme-text-color': '#c4c4c4',
+        'theme-text-color-highlight': "#ffffff"
       },
     },
   },

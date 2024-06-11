@@ -3,7 +3,7 @@ import Main from "@/components/Main.jsx";
 
 export default function App() {
     return (
-        <div className="bg-theme-color-dark min-h-screen flex flex-col">
+        <div className="bg-theme-color-secondary min-h-screen flex flex-col">
             <Header/>
             <Main/>
         </div>
