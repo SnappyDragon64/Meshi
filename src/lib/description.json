@@ -1,0 +1,22 @@
+{
+    "enemies_description": [
+        {
+            "name" :"Boring Dummy",
+            "hp": "36",
+            "weakness":"Format “TV” x1.25",
+            "resistance":"No Resistances"
+        },
+        {
+            "name" :"Menacing Dummy",
+            "hp": "36",
+            "weakness":"Genre “Comedy” x1.25",
+            "resistance":"Genre “Action” x0.75"
+        },
+        {
+            "name" :"Manequeen",
+            "hp": "36",
+            "weakness":"Episodes > 20 x1.5",
+            "resistance":"Episode Duration < 23 mins x0.5"
+        }
+    ]
+}
