@@ -1,5 +1,4 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
-import EnemyInfo from "@/components/EnemyInfo.jsx";
 import EnemyInfoAccordion from "./EnemyInfoAccordion.jsx";
 
 const Main = () => {
