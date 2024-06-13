@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion.jsx";
-import Enemies from "./Enemies";
+import EnemyInfo from "./EnemyInfo.jsx";
 import boring_dummy from "../assets/boring_dummy.png";
 import menacing_dummy from "../assets/menacing_dummy.png";
 import manequeen from "../assets/manequeen.png";
@@ -19,13 +19,13 @@ const enemies = [
   },
   {
     name: "Menacing Dummy",
-    hp: "36",
+    hp: "60",
     weakness: "Genre “Comedy” x1.25",
     resistance: "Genre “Action” x0.75",
   },
   {
     name: "Manequeen",
-    hp: "36",
+    hp: "175",
     weakness: "Episodes > 20 x1.5",
     resistance: "Episode Duration < 23 mins x0.5",
   },
@@ -37,7 +37,7 @@ const images = {
   "Manequeen": manequeen,
 };
 
-const EnemiesAccordion = () => {
+const EnemyInfoAccordion = () => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
@@ -47,7 +47,7 @@ const EnemiesAccordion = () => {
         <AccordionContent>
           <div className="flex gap-8 p-2 flex-col xl:flex-row">
             {enemies.map((enemy) => (
-              <Enemies
+              <EnemyInfo
                 key={enemy.name}
                 name={enemy.name}
                 hp={enemy.hp}
@@ -63,4 +63,4 @@ const EnemiesAccordion = () => {
   );
 };
 
-export default EnemiesAccordion;
+export default EnemyInfoAccordion;

@@ -1,6 +1,6 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
-import Enemies from "@/components/Enemies.jsx";
-import EnemiesAccordion from "./EnemiesAccordion";
+import EnemyInfo from "@/components/EnemyInfo.jsx";
+import EnemyInfoAccordion from "./EnemyInfoAccordion.jsx";
 
 const Main = () => {
     return (
@@ -10,7 +10,7 @@ const Main = () => {
                     <p className="text-theme-text-color">
                         A calculator for AWC&apos;s Dungeon Challenge: Training Grounds.
                     </p>
-                    <EnemiesAccordion/>
+                    <EnemyInfoAccordion/>
                 </div>
             </MaxWidthWrapper>
         </main>
