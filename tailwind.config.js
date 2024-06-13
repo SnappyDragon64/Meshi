@@ -32,11 +32,11 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       colors: {
-        'theme-color-highlight': '#311616',
-        'theme-color-header': '#311616',
-        'theme-color-primary': '#311616',
-        'theme-color-secondary': '#1a0b0b',
-        'theme-color-tertiary': '#000000',
+        'theme-color-highlight': '#02FF25',
+        'theme-color-header': '#15321F',
+        'theme-color-primary': '#152E1F',
+        'theme-color-secondary': '#0B2212',
+        'theme-color-tertiary': '#0F1F15',
         'theme-text-color': '#c4c4c4',
         'theme-text-color-highlight': "#ffffff"
       },

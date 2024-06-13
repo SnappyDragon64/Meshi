@@ -22,7 +22,7 @@ const AniListUsernameInput = ({ username, onSubmit }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="flex items-center gap-2">
-                <input type="text" value={name} onChange={handleChange} placeholder="AniList Username" className="text-theme-text-color bg-theme-color-secondary focus:outline-0 p-1 rounded-lg"
+                <input type="text" value={name} onChange={handleChange} placeholder="AniList Username" className="text-sm text-theme-text-color bg-theme-color-secondary focus:outline-0 p-1 rounded-lg"
                 />
                 <Button variant="link" size="icon" type="submit" disabled={!name} className={!name ? "cursor-not-allowed opacity-50" : ""}>
                     <LogIn className={cn("h-6 w-6", !name ? "stroke-theme-text-color" : "stroke-theme-text-color hover:stroke-theme-text-color-highlight")} />
