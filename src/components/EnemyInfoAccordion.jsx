@@ -39,13 +39,13 @@ const images = {
 
 const EnemyInfoAccordion = () => {
   return (
-    <Accordion type="single" collapsible>
+    <Accordion type="single" collapsible >
       <AccordionItem value="item-1">
-        <AccordionTrigger className="text-theme-text-color hover:text-theme-text-color-highlight font-bold">
+        <AccordionTrigger className="text-theme-text-color hover:text-theme-text-color-highlight font-bold ">
           Enemies
         </AccordionTrigger>
         <AccordionContent>
-          <div className="flex gap-8 p-2 flex-col xl:flex-row">
+          <div className="flex gap-8 p-2 flex-col lg:flex-row -z-50">
             {enemies.map((enemy) => (
               <EnemyInfo
                 key={enemy.name}
