@@ -1,14 +1,9 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button.jsx";
 import { LogIn } from "lucide-react";
 import { cn } from "@/lib/utils.js";
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 const AniListUsernameInput = ({ username, onSubmit }) => {
-  const client = new ApolloClient({
-
-  };
-          onChange={handleChange}
-            className={cn(
     const [ name, setName ] = useState("");
 
     useEffect(() => {
