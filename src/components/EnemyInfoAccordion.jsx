@@ -48,12 +48,12 @@ const EnemyInfoAccordion = () => {
           <div className="flex gap-8 p-2 flex-col lg:flex-row -z-50">
             {enemies.map((enemy) => (
               <EnemyInfo
-                key={enemy.name}
-                name={enemy.name}
-                hp={enemy.hp}
-                weakness={enemy.weakness}
-                resistance={enemy.resistance}
-                image={images[enemy.name]}
+                key={ enemy.name }
+                name={ enemy.name }
+                hp={ enemy.hp }
+                weakness={ enemy.weakness }
+                resistance={ enemy.resistance }
+                image={ images[enemy.name] }
               />
             ))}
           </div>
