@@ -1,11 +1,11 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
   prefix: "",
   theme: {
@@ -26,21 +26,26 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "spin": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "spin": "spin 2s linear infinite",
       },
       colors: {
-        'theme-color-highlight': '#02FF25',
-        'theme-color-header': '#15321F',
-        'theme-color-primary': '#152E1F',
-        'theme-color-secondary': '#0B2212',
-        'theme-color-tertiary': '#0F1F15',
-        'theme-text-color': '#c4c4c4',
-        'theme-text-color-highlight': "#ffffff"
+        "theme-color-highlight": "#02FF25",
+        "theme-color-header": "#15321F",
+        "theme-color-primary": "#152E1F",
+        "theme-color-secondary": "#0B2212",
+        "theme-color-tertiary": "#0F1F15",
+        "theme-text-color": "#c4c4c4",
+        "theme-text-color-highlight": "#ffffff"
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [ require("tailwindcss-animate") ],
 }

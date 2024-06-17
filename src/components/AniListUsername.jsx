@@ -4,12 +4,12 @@ import AniListUsernameInput from "@/components/AniListUsernameInput.jsx";
 import { AppContext } from "@/lib/Context.jsx"
 
 const AniListUsername = () => {
-  const { username, setUsername } = useContext(AppContext);
-  const { refresh, setRefresh } = useContext(AppContext);
+  const { username, setUsername, setRefresh} = useContext(AppContext);
   const [ submitted, setSubmitted ] = useState(false);
 
   const handleSubmit = (name) => {
     setUsername(name);
+    setRefresh(true);
     setSubmitted(true);
   };
 
@@ -23,11 +23,11 @@ const AniListUsername = () => {
 
   return (
       <div>
-        {!submitted ? (
+        { !submitted ? (
             <AniListUsernameInput username={ username } onSubmit={ handleSubmit }/>
         ) : (
             <AniListUsernameDisplay username={ username } onEdit={ handleEdit } onRefresh={ handleRefresh }/>
-        )}
+        ) }
       </div>
   );
 };
