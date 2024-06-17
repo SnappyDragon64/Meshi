@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "@/lib/Context.jsx";
+import { AppContext } from "@/lib/AppContext.jsx";
 import fetchList from "@/lib/AniListClient.jsx";
+import formatEntries from "@/lib/DataConverter.jsx";
+import {storeEntries} from "@/lib/IndexedDB.jsx";
 
 const FetchStatus = {
-    DEFAULT: 'idle',
-    LOADING: 'loading',
-    SUCCESS: 'success',
-    ERROR: 'error',
+    DEFAULT: "idle",
+    LOADING: "loading",
+    SUCCESS: "success",
+    ERROR: "error",
 };
 
 function CalculatorWindow() {
@@ -21,13 +23,17 @@ function CalculatorWindow() {
             fetchList(username)
                 .then(result => {
                     if (result.success) {
+                        const data = result.data
+                        const entries = data.MediaListCollection.lists[0].entries
+                        const convertedEntries = formatEntries(entries)
+                        storeEntries(convertedEntries)
                         setFetchStatus(FetchStatus.SUCCESS)
                     } else {
                         setFetchStatus(FetchStatus.ERROR)
                     }
             });
         }
-    }, [username, refresh]);
+    }, [refresh]);
 
     const content = {
         [FetchStatus.DEFAULT]: <p className="text-theme-text-color">Enter your AniList username to get started</p>,

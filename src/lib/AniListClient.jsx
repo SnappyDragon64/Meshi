@@ -22,14 +22,14 @@ async function postAniListQuery(query, variables) {
                 data: json.data,
             }
         } else {
-            console.error('Error:', json.errors ? json.errors[0].message : "Unknown error");
+            console.error("Error:", json.errors ? json.errors[0].message : "Unknown error");
             return {
                 success: false,
                 error: json.errors ? json.errors[0].message : "Unknown error",
             };
         }
     } catch (e) {
-        console.error('Error:', e.message);
+        console.error("Error:", e.message);
         return {
             success: false,
             error: e.message,
@@ -49,6 +49,10 @@ async function fetchList(username) {
                                     romaji
                                     english
                                 }
+                                episodes
+                                duration
+                                format
+                                genres
                             }
                             startedAt {
                                 year

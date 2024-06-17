@@ -1,35 +1,45 @@
-import { useContext, useState } from "react"
+import {useContext, useEffect, useState} from "react"
 import AniListUsernameDisplay from "@/components/AniListUsernameDisplay.jsx";
 import AniListUsernameInput from "@/components/AniListUsernameInput.jsx";
-import { AppContext } from "@/lib/Context.jsx"
+import {AppContext} from "@/lib/AppContext.jsx"
 
 const AniListUsername = () => {
-  const { username, setUsername, setRefresh} = useContext(AppContext);
-  const [ submitted, setSubmitted ] = useState(false);
+    const {username, setUsername, setRefresh} = useContext(AppContext);
+    const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (name) => {
-    setUsername(name);
-    setRefresh(true);
-    setSubmitted(true);
-  };
+    useEffect(() => {
+        const storedUsername = localStorage.getItem("username");
 
-  const handleEdit = () => {
-    setSubmitted(false);
-  };
+        if (storedUsername) {
+            setUsername(storedUsername);
+            setSubmitted(true);
+        }
+    }, []);
 
-  const handleRefresh = () => {
-    setRefresh(true);
-  };
+    const handleSubmit = (name) => {
+        setUsername(name);
+        localStorage.setItem("username", name);
+        setRefresh(true);
+        setSubmitted(true);
+    };
 
-  return (
-      <div>
-        { !submitted ? (
-            <AniListUsernameInput username={ username } onSubmit={ handleSubmit }/>
-        ) : (
-            <AniListUsernameDisplay username={ username } onEdit={ handleEdit } onRefresh={ handleRefresh }/>
-        ) }
-      </div>
-  );
+    const handleEdit = () => {
+        setSubmitted(false);
+    };
+
+    const handleRefresh = () => {
+        setRefresh(true);
+    };
+
+    return (
+        <div>
+            {!submitted ? (
+                <AniListUsernameInput username={username} onSubmit={handleSubmit}/>
+            ) : (
+                <AniListUsernameDisplay username={username} onEdit={handleEdit} onRefresh={handleRefresh}/>
+            )}
+        </div>
+    );
 };
 
 export default AniListUsername;
