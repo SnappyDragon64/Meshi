@@ -1,7 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@/lib/Context.jsx";
-import FetchStatus from "@/lib/FetchStatus.jsx";
 import fetchList from "@/lib/AniListClient.jsx";
+
+const FetchStatus = {
+    DEFAULT: 'idle',
+    LOADING: 'loading',
+    SUCCESS: 'success',
+    ERROR: 'error',
+};
 
 function CalculatorWindow() {
     const { username, refresh, setRefresh } = useContext(AppContext);
