@@ -4,8 +4,8 @@ import AniListUsernameInput from "@/components/AniListUsernameInput.jsx";
 import { AppContext } from "@/lib/Context.jsx"
 
 const AniListUsername = () => {
-  const { handleRefresh } = useContext(AppContext);
   const { username, setUsername } = useContext(AppContext);
+  const { refresh, setRefresh } = useContext(AppContext);
   const [ submitted, setSubmitted ] = useState(false);
 
   const handleSubmit = (name) => {
@@ -15,6 +15,10 @@ const AniListUsername = () => {
 
   const handleEdit = () => {
     setSubmitted(false);
+  };
+
+  const handleRefresh = () => {
+    setRefresh(true);
   };
 
   return (

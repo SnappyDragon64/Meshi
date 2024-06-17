@@ -6,12 +6,8 @@ export const AppProvider = ({ children }) => {
     const [ username, setUsername ] = useState("");
     const [ refresh, setRefresh ] = useState(false);
 
-    const handleRefresh = () => {
-        setRefresh(!refresh);
-    };
-
     return (
-        <AppContext.Provider value={{ username, setUsername, refresh, handleRefresh }}>
+        <AppContext.Provider value={{ username, setUsername, refresh, setRefresh }}>
             { children }
         </AppContext.Provider>
     );
