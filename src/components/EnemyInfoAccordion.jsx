@@ -1,41 +1,11 @@
-import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion.jsx";
+} from "@/components/ui/Accordion.jsx";
 import EnemyInfo from "./EnemyInfo.jsx";
-import boring_dummy from "../assets/boring_dummy.png";
-import menacing_dummy from "../assets/menacing_dummy.png";
-import manequeen from "../assets/manequeen.png";
-
-const enemies = [
-  {
-    name: "Boring Dummy",
-    hp: "36",
-    weakness: "Format “TV” x1.25",
-    resistance: "No Resistances",
-  },
-  {
-    name: "Menacing Dummy",
-    hp: "60",
-    weakness: "Genre “Comedy” x1.25",
-    resistance: "Genre “Action” x0.75",
-  },
-  {
-    name: "Manequeen",
-    hp: "175",
-    weakness: "Episodes > 20 x1.5",
-    resistance: "Episode Duration < 23 mins x0.5",
-  },
-];
-
-const images = {
-  "Boring Dummy": boring_dummy,
-  "Menacing Dummy": menacing_dummy,
-  "Manequeen": manequeen,
-};
+import Enemies from "@/lib/Enemies.jsx";
 
 const EnemyInfoAccordion = () => {
   return (
@@ -46,14 +16,14 @@ const EnemyInfoAccordion = () => {
         </AccordionTrigger>
         <AccordionContent>
           <div className="flex gap-8 p-2 flex-col lg:flex-row -z-50">
-            {enemies.map((enemy) => (
+            {Enemies.map((enemy) => (
               <EnemyInfo
                 key={ enemy.name }
                 name={ enemy.name }
                 hp={ enemy.hp }
                 weakness={ enemy.weakness }
                 resistance={ enemy.resistance }
-                image={ images[enemy.name] }
+                image={ enemy.image }
               />
             ))}
           </div>

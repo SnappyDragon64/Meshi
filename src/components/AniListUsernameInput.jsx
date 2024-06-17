@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button.jsx";
+import { Button } from "@/components/ui/Button.jsx";
 import { LogIn } from "lucide-react";
 import { cn } from "@/lib/utils.js";
 
