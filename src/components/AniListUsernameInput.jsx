@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button.jsx";
 import { LogIn } from "lucide-react";
-import { cn } from "@/lib/utils.js";
+import { cn } from "@/util/utils.js";
 
 const AniListUsernameInput = ({ username, onSubmit }) => {
     const [ name, setName ] = useState("");

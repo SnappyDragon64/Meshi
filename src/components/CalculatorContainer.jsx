@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "@/lib/AppContext.jsx";
-import fetchList from "@/lib/AniListClient.jsx";
-import formatEntries from "@/lib/DataConverter.jsx";
-import {storeEntries} from "@/lib/IndexedDB.jsx";
+import { AppContext } from "@/context/AppContext.jsx";
+import fetchList from "@/services/AniListClient.jsx";
+import formatEntries from "@/util/DataConverter.jsx";
+import {storeEntries} from "@/services/IndexedDB.jsx";
 
 const FetchStatus = {
     DEFAULT: "idle",
@@ -14,6 +14,14 @@ const FetchStatus = {
 function CalculatorWindow() {
     const { username, refresh, setRefresh } = useContext(AppContext);
     const [ fetchStatus, setFetchStatus ] = useState(FetchStatus.DEFAULT);
+
+    useEffect(() => {
+        const storedUsername = localStorage.getItem("username");
+
+        if (storedUsername) {
+            setFetchStatus(FetchStatus.SUCCESS);
+        }
+    }, []);
 
     useEffect(() => {
         if (username && refresh) {

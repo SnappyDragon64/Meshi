@@ -6,10 +6,6 @@ export function initIndexedDB() {
     request.onupgradeneeded = (e) => {
         db = e.target.result;
 
-        if (db.objectStoreNames.contains("anime")) {
-            db.deleteObjectStore("anime");
-        }
-
         const animeStore = db.createObjectStore("anime", { keyPath: "id" });
         animeStore.createIndex("byEnglishName", "englishName", { unique: true });
         animeStore.createIndex("byRomajiName", "romajiName", { unique: true });
