@@ -3,9 +3,9 @@ import menacingDummy from "@/challenge/enemies/MenacingDummy.jsx";
 import manequeen from "@/challenge/enemies/Manequeen.jsx";
 
 export const Enemies = {
-    BORING_DUMMY: 0,
-    MENACING_DUMMY: 1,
-    MANEQUEEN: 2
+    BORING_DUMMY: "boring_dummy",
+    MENACING_DUMMY: "menacing_dummy",
+    MANEQUEEN: "manequeen"
 }
 
 const EnemyRegistry = {
