@@ -78,7 +78,8 @@ export function searchAnimeByName(query) {
     const transaction = db.transaction("anime", "readonly");
     const animeStore = transaction.objectStore("anime");
     const index = animeStore.index("byEnglishName");
-    const result = [];
+    const priority = [];
+    const other = [];
 
     index.openCursor().onsuccess = (e) => {
       const cursor = e.target.result;
@@ -87,11 +88,17 @@ export function searchAnimeByName(query) {
         if (
           cursor.value.englishName.toLowerCase().startsWith(query.toLowerCase())
         ) {
-          result.push(cursor.value);
+          priority.push(cursor.value);
+        } else if (
+            cursor.value.englishName.toLowerCase().includes(query.toLowerCase())
+        ) {
+          other.push(cursor.value)
         }
 
         cursor.continue();
       } else {
+        const result = [...priority, ...other]
+        console.log(result)
         resolve(result);
       }
     };
