@@ -1,4 +1,4 @@
-import {cn} from "@/util/utils";
+import {cn} from "@/util/Utils.js";
 
 const MaxWidthWrapper = ({className, children}) => {
     return (
