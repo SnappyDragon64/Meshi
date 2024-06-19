@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@/context/AppContext.jsx";
-import fetchList from "@/services/AniListClient.jsx";
-import formatEntries from "@/util/DataConverter.jsx";
-import {storeEntries} from "@/services/IndexedDB.jsx";
+import fetchList from "@/services/AniListClient.js";
+import formatEntries from "@/util/DataConverter.js";
+import {storeEntries} from "@/services/IndexedDB.js";
 import ReorderableList from "./ReorderableList";
 
 const Status = {
