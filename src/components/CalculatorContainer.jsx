@@ -3,6 +3,7 @@ import { AppContext } from "@/context/AppContext.jsx";
 import fetchList from "@/services/AniListClient.jsx";
 import formatEntries from "@/util/DataConverter.jsx";
 import {storeEntries} from "@/services/IndexedDB.jsx";
+import ReorderableList from "./ReorderableList";
 
 const Status = {
     DEFAULT: "idle",
@@ -52,7 +53,7 @@ function CalculatorWindow() {
 
     return (
         <div className="grow flex flex-col justify-center items-center p-8">
-            { content[status] }
+            { content[fetchStatus] }
         </div>
     );
 }
