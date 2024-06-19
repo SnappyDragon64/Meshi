@@ -1,0 +1,19 @@
+{
+    "name": "Menacing Dummy",
+    "hp": 60,
+    "weakness": {
+        "text": "Genre “Comedy” x1.25",
+        "multiplier": 1.25,
+        "condition": {
+            "genre": "Comedy"
+        }
+    },
+    "resistance": {
+        "text": "Genre “Action” x0.75",
+        "multiplier": 0.75,
+        "condition": {
+            "genre": "Action"
+        }
+    },
+    "image": "src/assets/enemies/menacing_dummy.png"
+}

@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/Accordion.jsx";
 import EnemyInfo from "./EnemyInfo.jsx";
-import {Enemies, getEnemy} from "@/challenge/Enemies.jsx";
+import {getEnemies} from "@/challenge/Enemies.js";
 
 const EnemyInfoAccordion = () => {
   return (
@@ -16,16 +16,16 @@ const EnemyInfoAccordion = () => {
         </AccordionTrigger>
         <AccordionContent>
           <div className="flex gap-8 p-2 flex-col lg:flex-row -z-50">
-            {Object.values(Enemies).map((enemyId) => {
-              const enemy = getEnemy(enemyId);
+            {getEnemies().map((enemy) => {
+              const { name, hp, weakness, resistance, image } = enemy;
               return (
                   <EnemyInfo
-                      key={enemy.name}
-                      name={enemy.name}
-                      hp={enemy.hp}
-                      weakness={enemy.weakness?.text || "No Weakness"}
-                      resistance={enemy.resistance?.text || "No Resistance"}
-                      image={enemy.image}
+                      key={name}
+                      name={name}
+                      hp={hp}
+                      weakness={weakness?.text || "No Weakness"}
+                      resistance={resistance?.text || "No Resistance"}
+                      image={image}
                   />
               );
             })}
