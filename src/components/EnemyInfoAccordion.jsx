@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/Accordion.jsx";
 import EnemyInfo from "./EnemyInfo.jsx";
-import {getEnemies} from "@/challenge/Enemies.js";
+import {getEnemies} from "@/challenge/registry/Enemies.js";
 
 const EnemyInfoAccordion = () => {
   return (

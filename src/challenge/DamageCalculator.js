@@ -1,4 +1,4 @@
-import {Waves} from "@/challenge/Waves.js";
+import {Waves} from "@/challenge/registry/Waves.js";
 
 function calculateDamage(wave, attacks) {
     const enemy_list = Waves[wave];
