@@ -47,13 +47,13 @@ function CalculatorWindow() {
     const content = {
         [Status.DEFAULT]: <p className="text-theme-text-color">Enter your AniList username to get started</p>,
         [Status.LOADING]: <p className="text-theme-text-color animate-spin">( ˘▽˘)っ♨</p>,
-        [Status.SUCCESS]: <div/>,
+        [Status.SUCCESS]: <ReorderableList/>,
         [Status.ERROR]: <p className="text-theme-text-color">Error fetching data from AniList</p>,
     };
 
     return (
         <div className="grow flex flex-col justify-center items-center p-8">
-            { content[fetchStatus] }
+            { content[status] }
         </div>
     );
 }

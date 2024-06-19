@@ -2,7 +2,7 @@ import React, { useState , useEffect} from "react";
 import { ArrowUp } from "lucide-react";
 import { ArrowDown } from "lucide-react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { searchAnimeByName } from "@/lib/IndexedDB";
+import { searchAnimeByName } from "@/services/IndexedDB";
 
 const ReorderableListItem = () => {
   const [animeName, setAnimeName] = useState("");
