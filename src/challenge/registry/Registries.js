@@ -5,6 +5,7 @@ const META_REGISTRY = new Registry("registry");
 
 export const ENEMY_REGISTRY = createRegistry("enemy", LazyRegistry);
 export const WAVE_REGISTRY = createRegistry("wave", LazyRegistry);
+export const CHALLENGE_REGISTRY = createRegistry("challenge", LazyRegistry);
 
 function createRegistry(id, registryClass) {
     const registry = new registryClass(id);

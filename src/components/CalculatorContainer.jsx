@@ -4,6 +4,7 @@ import fetchList from "@/services/AniListClient.js";
 import formatEntries from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
 import ReorderableList from "./ReorderableList";
+import Spinner from "@/components/Spinner.jsx";
 
 const Status = {
     DEFAULT: "idle",
@@ -46,7 +47,7 @@ function CalculatorWindow() {
 
     const content = {
         [Status.DEFAULT]: <p className="text-theme-text-color">Enter your AniList username to get started</p>,
-        [Status.LOADING]: <p className="text-theme-text-color animate-spin">( ˘▽˘)っ♨</p>,
+        [Status.LOADING]: <Spinner/>,
         [Status.SUCCESS]: <ReorderableList/>,
         [Status.ERROR]: <p className="text-theme-text-color">Error fetching data from AniList</p>,
     };

@@ -1,0 +1,13 @@
+{
+    "name": "Dungeon Challenge: Training Grounds",
+    "enemies": [
+        "boring_dummy",
+        "menacing_dummy",
+        "manequeen"
+    ],
+    "waves": [
+        "training_grounds_wave_1",
+        "training_grounds_wave_2",
+        "training_grounds_wave_3"
+    ]
+}

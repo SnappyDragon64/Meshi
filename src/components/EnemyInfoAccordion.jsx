@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/Accordion.jsx";
+import {useEffect, useState} from 'react';
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/Accordion.jsx";
 import EnemyInfo from "./EnemyInfo.jsx";
-import { getEnemies } from "@/challenge/registry/Enemies.js";
+import {getEnemy} from "@/challenge/registry/Enemies.js";
+import {getChallenge} from "@/challenge/registry/Challenges.js";
+import Spinner from "@/components/Spinner.jsx";
 
 const generateText = (items, defaultText) => {
     return items && items.length > 0
@@ -9,28 +11,30 @@ const generateText = (items, defaultText) => {
         : defaultText;
 };
 
+async function fetchEnemies() {
+    const challenge = await getChallenge("training_grounds")
+    const enemyIds = challenge.enemies;
+    const fetchedEnemies = [];
+
+    for (const enemyId of enemyIds) {
+        const enemy = await getEnemy(enemyId);
+        fetchedEnemies.push(enemy);
+    }
+
+    return fetchedEnemies;
+}
+
 const EnemyInfoAccordion = () => {
     const [enemies, setEnemies] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchEnemies = async () => {
-            try {
-                const enemiesData = await getEnemies();
-                setEnemies(enemiesData);
-            } catch (error) {
-                console.error('Error fetching enemies:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+        fetchEnemies().then((fetchedEnemies) => {
+            setEnemies(fetchedEnemies)
+        })
 
-        fetchEnemies();
+        setLoading(false);
     }, []);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <Accordion type="single" collapsible>
@@ -39,21 +43,22 @@ const EnemyInfoAccordion = () => {
                     Enemies
                 </AccordionTrigger>
                 <AccordionContent>
-                    <div className="flex gap-8 p-2 flex-col lg:flex-row -z-50">
-                        {enemies.map((enemy) => {
-                            const { name, hp, weaknesses, resistances, image } = enemy;
+                    <div className="flex gap-8 p-2 flex-col lg:flex-row justify-center -z-50">
+                        {loading ? <Spinner type="mini"/> :
+                            enemies.map((enemy) => {
+                                const {name, hp, weaknesses, resistances, image} = enemy;
 
-                            return (
-                                <EnemyInfo
-                                    key={name}
-                                    name={name}
-                                    hp={hp}
-                                    weaknesses={generateText(weaknesses, "No Weaknesses")}
-                                    resistances={generateText(resistances, "No Resistances")}
-                                    image={image}
-                                />
-                            );
-                        })}
+                                return (
+                                    <EnemyInfo
+                                        key={name}
+                                        name={name}
+                                        hp={hp}
+                                        weaknesses={generateText(weaknesses, "No Weaknesses")}
+                                        resistances={generateText(resistances, "No Resistances")}
+                                        image={image}
+                                    />
+                                );
+                            })}
                     </div>
                 </AccordionContent>
             </AccordionItem>

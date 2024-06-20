@@ -7,7 +7,7 @@ export const AppProvider = ({ children }) => {
     const [ refresh, setRefresh ] = useState(false);
 
     return (
-        <AppContext.Provider value={{ username, setUsername, refresh, setRefresh }}>
+        <AppContext.Provider value={{ username, setUsername, refresh, setRefresh}}>
             { children }
         </AppContext.Provider>
     );
