@@ -1,4 +1,4 @@
-const EnemyInfo = ({ name, hp, weakness, resistance, image }) => {
+const EnemyInfo = ({ name, hp, weaknesses, resistances, image }) => {
   return (
       <div className="w-full grid rounded-lg overflow-hidden">
           <div className="col-start-1 row-start-1 flex flex-row-reverse z-0">
@@ -12,10 +12,10 @@ const EnemyInfo = ({ name, hp, weakness, resistance, image }) => {
               <div className="p-4">
                   <p className="text-xl font-bold text-theme-text-color">{ name }</p>
                   <p className="text-lg font-bold text-theme-text-color">HP: { hp }</p>
-                  <p className="text-lg font-bold text-theme-text-color">Weakness:</p>
-                  <p className="text-lg text-theme-text-color">{ weakness }</p>
-                  <p className="text-lg font-bold text-theme-text-color">Resistance:</p>
-                  <p className="text-lg text-theme-text-color">{ resistance }</p>
+                  <p className="text-lg font-bold text-theme-text-color">Weaknesses:</p>
+                  <p className="text-lg text-theme-text-color">{ weaknesses }</p>
+                  <p className="text-lg font-bold text-theme-text-color">Resistances:</p>
+                  <p className="text-lg text-theme-text-color">{ resistances }</p>
               </div>
           </div>
       </div>

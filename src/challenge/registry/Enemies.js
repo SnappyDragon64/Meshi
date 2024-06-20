@@ -1,18 +1,17 @@
-import boringDummy from "@/challenge/enemies/boring_dummy.json";
-import menacingDummy from "@/challenge/enemies/menacing_dummy.json";
-import manequeen from "@/challenge/enemies/manequeen.json";
-import {Registry} from "@/challenge/registry/Registry.js";
+import {ENEMY_REGISTRY} from "@/challenge/registry/Registries.js";
 
-const ENEMY_REGISTRY = new Registry();
+// export const BORING_DUMMY = getEnemy("boring_dummy");
+// export const MENACING_DUMMY = getEnemy("menacing_dummy");
+// export const MANEQUEEN = getEnemy("manequeen");
 
-export const BORING_DUMMY = ENEMY_REGISTRY.register("boring_dummy", boringDummy);
-export const MENACING_DUMMY = ENEMY_REGISTRY.register("menacing_dummy", menacingDummy);
-export const MANEQUEEN = ENEMY_REGISTRY.register("manequeen", manequeen);
-
-export function getEnemy(id) {
-    return ENEMY_REGISTRY.get(id);
+export async function getEnemy(id) {
+    return await ENEMY_REGISTRY.get(id)
 }
 
-export function getEnemies() {
-    return ENEMY_REGISTRY.getAll();
+export async function getEnemies() {
+    return await ENEMY_REGISTRY.getAll();
+}
+
+export function getEnemyIds() {
+    return ENEMY_REGISTRY.getIds();
 }

@@ -3,11 +3,12 @@ import Header from "@/components/Header.jsx";
 import Main from "@/components/Main.jsx";
 import { AppProvider } from "@/context/AppContext.jsx";
 import {initIndexedDB} from "@/services/IndexedDB.js";
+import {loadData} from "@/challenge/registry/DataLoader.js";
+import "@/challenge/registry/Registries.js";
 
 export default function App() {
-    useEffect(() => {
-        initIndexedDB();
-    }, []);
+    initIndexedDB();
+    loadData();
 
     return (
         <AppProvider>
