@@ -23,8 +23,6 @@ function formatEntry(entry) {
   }
 }
 
-function formatEntries(entries) {
+export function formatEntries(entries) {
   return entries.map(entry => formatEntry(entry))
 }
-
-export default formatEntries

@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {AppContext} from "@/context/AppContext.jsx";
-import fetchList from "@/services/AniListClient.js";
-import formatEntries from "@/util/DataConverter.js";
+import {fetchList} from "@/services/AniListClient.js";
+import {formatEntries} from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
 import ReorderableList from "@/components/ReorderableList.jsx";
 import Spinner from "@/components/Spinner.jsx";

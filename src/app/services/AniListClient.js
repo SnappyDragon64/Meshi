@@ -37,7 +37,7 @@ async function postAniListQuery(query, variables) {
   }
 }
 
-async function fetchList(username) {
+export async function fetchList(username) {
   const query = `
             query ($username: String, $type: MediaType, $status: MediaListStatus) {
                 MediaListCollection(userName: $username, type: $type, status: $status) {
@@ -78,5 +78,3 @@ async function fetchList(username) {
 
   return await postAniListQuery(query, variables);
 }
-
-export default fetchList;
