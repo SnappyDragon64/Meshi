@@ -13,9 +13,9 @@ const EnemyInfo = ({name, hp, weaknesses, resistances, image}) => {
         <div className="p-4">
           <p className="text-xl font-bold text-theme-text-color">{name}</p>
           <p className="text-lg font-bold text-theme-text-color">HP: {hp}</p>
-          <p className="text-lg font-bold text-theme-text-color">Weaknesses:</p>
+          <p className="text-lg font-bold text-theme-text-color">Weakness:</p>
           <p className="text-lg text-theme-text-color">{weaknesses}</p>
-          <p className="text-lg font-bold text-theme-text-color">Resistances:</p>
+          <p className="text-lg font-bold text-theme-text-color">Resistance:</p>
           <p className="text-lg text-theme-text-color">{resistances}</p>
         </div>
       </div>
