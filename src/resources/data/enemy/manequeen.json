@@ -5,22 +5,26 @@
     {
       "text": "Episodes > 20 x1.5",
       "multiplier": 1.5,
-      "condition": {
-        "type": "greater_than",
-        "attribute": "episodes",
-        "value": 20
-      }
+      "conditions": [
+        {
+          "type": "greater_than",
+          "attribute": "episodes",
+          "value": 20
+        }
+      ]
     }
   ],
   "resistances": [
     {
       "text": "Episode Duration < 23 mins x0.5",
       "multiplier": 0.5,
-      "condition": {
-        "type": "less_than",
-        "attribute": "duration",
-        "value": 23
-      }
+      "conditions": [
+        {
+          "type": "less_than",
+          "attribute": "duration",
+          "value": 23
+        }
+      ]
     }
   ],
   "image": "src/resources/assets/enemy/manequeen.png"

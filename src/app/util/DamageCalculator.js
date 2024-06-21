@@ -1,6 +1,7 @@
-import {Waves} from "@/registry/Waves.js";
+import {getWave} from "@/app/registry/Waves.js";
+import {getEnemy} from "@/app/registry/Enemies.js";
 
-function checkCondition(condition, attack) {
+function checkCondition(attack, condition) {
   const {type, attribute, value} = condition;
 
   if (!Object.hasOwn(attack, attribute)) {
@@ -21,30 +22,42 @@ function checkCondition(condition, attack) {
   }
 }
 
+function checkConditions(attack, conditions) {
+  for (const condition of conditions) {
+    if (!checkCondition(attack, condition)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function applyMultipliers(damage, attack, conditionalMultipliers) {
+  if (conditionalMultipliers) {
+    for (const conditionalMultiplier of conditionalMultipliers) {
+      const {multiplier, conditions} = conditionalMultiplier;
+
+      if (conditions && checkConditions(attack, conditions)) {
+        damage *= multiplier;
+      }
+    }
+  }
+
+  return damage;
+}
+
 function calculateDamage(wave, attacks) {
-  const enemy_list = Waves[wave];
+  const enemy_list = getWave(wave);
   const damage_sustained = new Array(enemy_list.length).fill(0);
   const damage_dealt = [];
   let current_index = 0;
 
   for (const attack of attacks) {
-    let current_enemy = enemy_list[current_index];
+    let current_enemy = getEnemy(enemy_list[current_index]);
     let damage = attack.episodes * attack.duration / 10.0;
 
-    const weaknesses = current_enemy.weaknesses;
-    if (weaknesses) {
-      weaknesses.forEach((weakness) => {
-        const multiplier = weakness.multiplier;
-        const condition = weakness.condition;
-
-        if (checkCondition(condition, attack)) {
-          damage *= multiplier;
-        }
-      })
-
-    }
-
-    // resistances
+    damage = applyMultipliers(damage, attack, current_enemy.weaknesses)
+    damage = applyMultipliers(damage, attack, current_enemy.resistances)
 
     damage_sustained[current_index] += damage;
     damage_dealt.push(damage);
