@@ -15,7 +15,3 @@ function createRegistry(id, registryClass) {
 export function getRegistry(id) {
   return META_REGISTRY.get(id);
 }
-
-export function getRegistries() {
-  return META_REGISTRY.getAll();
-}

@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/Accordion.jsx";
 import EnemyInfo from "./EnemyInfo.jsx";
-import {getEnemy} from "@/registry/Enemies.js";
 import {getChallenge} from "@/registry/Challenges.js";
 import Spinner from "@/components/Spinner.jsx";
 
@@ -13,15 +12,7 @@ const generateText = (items, defaultText) => {
 
 async function fetchEnemies() {
   const challenge = await getChallenge("training_grounds")
-  const enemyIds = challenge.enemies;
-  const fetchedEnemies = [];
-
-  for (const enemyId of enemyIds) {
-    const enemy = await getEnemy(enemyId);
-    fetchedEnemies.push(enemy);
-  }
-
-  return fetchedEnemies;
+  return challenge.enemies;
 }
 
 const EnemyInfoAccordion = () => {

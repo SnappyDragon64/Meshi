@@ -1,6 +1,3 @@
-import {getWave} from "@/app/registry/Waves.js";
-import {getEnemy} from "@/app/registry/Enemies.js";
-
 function checkCondition(attack, condition) {
   const {type, attribute, value} = condition;
 
@@ -47,13 +44,12 @@ function applyMultipliers(damage, attack, conditionalMultipliers) {
 }
 
 function calculateDamage(wave, attacks) {
-  const enemy_list = getWave(wave);
-  const damage_sustained = new Array(enemy_list.length).fill(0);
+  const damage_sustained = new Array(wave.length).fill(0);
   const damage_dealt = [];
   let current_index = 0;
 
   for (const attack of attacks) {
-    let current_enemy = getEnemy(enemy_list[current_index]);
+    let current_enemy = wave[current_index];
     let damage = attack.episodes * attack.duration / 10.0;
 
     damage = applyMultipliers(damage, attack, current_enemy.weaknesses)
@@ -62,10 +58,10 @@ function calculateDamage(wave, attacks) {
     damage_sustained[current_index] += damage;
     damage_dealt.push(damage);
 
-    if (damage_sustained[current_index] >= enemy_list[current_index].hp) {
+    if (damage_sustained[current_index] >= wave[current_index].hp) {
       current_index += 1;
 
-      if (current_index >= enemy_list.length) {
+      if (current_index >= wave.length) {
         break;
       }
     }
