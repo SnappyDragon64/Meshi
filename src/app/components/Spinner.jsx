@@ -1,13 +1,9 @@
-const Spinner = ({type}) => {
+const Spinner = ({type = "normal"}) => {
   const kaomoji = type === "mini" ? "♨" : "( ˘▽˘)っ♨";
 
   return (
     <p className="text-theme-text-color animate-spin">{kaomoji}</p>
   );
 }
-
-Spinner.defaultProps = {
-  type: "normal"
-};
 
 export default Spinner;
