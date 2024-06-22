@@ -1,10 +1,12 @@
 import {useContext, useEffect, useState} from "react"
 import AniListUsernameDisplay from "@/components/AniListUsernameDisplay.jsx";
 import AniListUsernameInput from "@/components/AniListUsernameInput.jsx";
-import {AppContext} from "@/context/AppContext.jsx"
+import {UsernameContext} from "@/context/UsernameContext.jsx";
+import {RefreshContext} from "@/context/RefreshContext.jsx";
 
 const AniListUsername = () => {
-  const {username, setUsername, setRefresh} = useContext(AppContext);
+  const {username, setUsername} = useContext(UsernameContext);
+  const {refresh, setRefresh} = useContext(RefreshContext);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -17,18 +19,19 @@ const AniListUsername = () => {
   }, []);
 
   const handleSubmit = (name) => {
-    setUsername(name);
     localStorage.setItem("username", name);
-    setRefresh(true);
+    setUsername(name);
+    handleRefresh();
     setSubmitted(true);
   };
 
   const handleEdit = () => {
+    localStorage.setItem("username", "");
     setSubmitted(false);
   };
 
   const handleRefresh = () => {
-    setRefresh(true);
+    setRefresh(!refresh);
   };
 
   return (

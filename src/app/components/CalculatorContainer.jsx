@@ -1,20 +1,22 @@
 import {useContext, useEffect, useState} from "react";
-import {AppContext} from "@/context/AppContext.jsx";
 import {fetchList} from "@/services/AniListClient.js";
 import {formatEntries} from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
 import ReorderableList from "@/components/ReorderableList.jsx";
 import Spinner from "@/components/Spinner.jsx";
+import {UsernameContext} from "@/context/UsernameContext.jsx";
+import {RefreshContext} from "@/context/RefreshContext.jsx";
 
 const Status = {
-  DEFAULT: "idle",
+  DEFAULT: "default",
   LOADING: "loading",
   SUCCESS: "success",
   ERROR: "error",
 };
 
 function CalculatorWindow() {
-  const {username, refresh, setRefresh} = useContext(AppContext);
+  const {username} = useContext(UsernameContext);
+  const {refresh} = useContext(RefreshContext);
   const [status, setStatus] = useState(Status.DEFAULT);
 
   useEffect(() => {
@@ -26,24 +28,28 @@ function CalculatorWindow() {
   }, []);
 
   useEffect(() => {
-    if (username && refresh) {
-      setRefresh(false)
+    if (username) {
       setStatus(Status.LOADING);
-
-      fetchList(username)
-        .then(result => {
-          if (result.success) {
-            const data = result.data
-            const entries = data.MediaListCollection.lists[0].entries
-            const convertedEntries = formatEntries(entries)
-            storeEntries(convertedEntries)
-            setStatus(Status.SUCCESS)
-          } else {
-            setStatus(Status.ERROR)
-          }
-        });
+      fetchUserList();
+    } else {
+      setStatus(Status.DEFAULT);
     }
   }, [refresh]);
+
+  function fetchUserList() {
+    fetchList(username)
+      .then(result => {
+        if (result.success) {
+          const data = result.data
+          const entries = data.MediaListCollection.lists[0].entries
+          const convertedEntries = formatEntries(entries)
+          storeEntries(convertedEntries)
+          setStatus(Status.SUCCESS)
+        } else {
+          setStatus(Status.ERROR)
+        }
+      });
+  }
 
   const content = {
     [Status.DEFAULT]: <p className="text-theme-text-color">Enter your AniList username to get started</p>,
