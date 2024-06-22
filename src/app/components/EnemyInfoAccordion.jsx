@@ -4,17 +4,6 @@ import EnemyInfo from "./EnemyInfo.jsx";
 import {getChallenge} from "@/registry/Challenges.js";
 import Spinner from "@/components/Spinner.jsx";
 
-const generateText = (items, defaultText) => {
-  return items && items.length > 0
-    ? items.map(item => item.text).join("\n")
-    : defaultText;
-};
-
-async function fetchEnemies() {
-  const challenge = await getChallenge("training_grounds")
-  return challenge.enemies;
-}
-
 const EnemyInfoAccordion = () => {
   const [enemies, setEnemies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +15,17 @@ const EnemyInfoAccordion = () => {
 
     setLoading(false);
   }, []);
+
+  const fetchEnemies = async () => {
+    const challenge = await getChallenge("training_grounds")
+    return challenge.enemies;
+  };
+
+  const generateText = (items, defaultText) => {
+    return items && items.length > 0
+      ? items.map(item => item.text).join("\n")
+      : defaultText;
+  };
 
   return (
     <Accordion type="single" collapsible>
