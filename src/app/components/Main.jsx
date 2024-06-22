@@ -2,6 +2,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
 import EnemyInfoAccordion from "@/components/EnemyInfoAccordion.jsx";
 import CalculatorWindow from "@/components/CalculatorContainer.jsx";
 
+
 const Main = () => {
   return (
     <main className="grow flex flex-col">

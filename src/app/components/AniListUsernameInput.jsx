@@ -22,8 +22,7 @@ const AniListUsernameInput = ({username, onSubmit}) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex items-center gap-2">
-        <input type="text" value={name} onChange={handleChange} placeholder="AniList Username" name="aniListUsername"
-               autoComplete="on"
+        <input type="text" value={name} onChange={handleChange} placeholder="AniList Username"
                className="text-sm text-theme-text-color bg-theme-color-secondary focus:outline-0 p-1 rounded-lg"
         />
         <Button variant="link" size="icon" type="submit" disabled={!name}
