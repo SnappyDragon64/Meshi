@@ -3,8 +3,8 @@ import {UserContext} from "@/context/UserContext.jsx";
 import {fetchList} from "@/services/AniListClient.js";
 import {formatEntries} from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
-import ReorderableList from "@/components/ReorderableList.jsx";
 import Spinner from "@/components/Spinner.jsx";
+import Calculator from "@/components/Calculator.jsx";
 
 const Status = {
   DEFAULT: "idle",
@@ -43,17 +43,17 @@ function CalculatorWindow() {
           }
         });
     }
-  }, [refresh]);
+  }, [refresh, setRefresh, username]);
 
   const content = {
     [Status.DEFAULT]: <p className="text-theme-text-color">Enter your AniList username to get started</p>,
     [Status.LOADING]: <Spinner/>,
-    [Status.SUCCESS]: <ReorderableList/>,
+    [Status.SUCCESS]: <Calculator/>,
     [Status.ERROR]: <p className="text-theme-text-color">Error fetching data from AniList</p>,
   };
 
   return (
-    <div className="grow flex flex-col justify-center items-center p-8">
+    <div className="grow flex flex-col justify-between">
       {content[status]}
     </div>
   );
