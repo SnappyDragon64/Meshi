@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {AppContext} from "@/context/AppContext.jsx";
+import {UserContext} from "@/context/UserContext.jsx";
 import {fetchList} from "@/services/AniListClient.js";
 import {formatEntries} from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
@@ -14,7 +14,7 @@ const Status = {
 };
 
 function CalculatorWindow() {
-  const {username, refresh, setRefresh} = useContext(AppContext);
+  const {username, refresh, setRefresh} = useContext(UserContext);
   const [status, setStatus] = useState(Status.DEFAULT);
 
   useEffect(() => {

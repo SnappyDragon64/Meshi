@@ -1,10 +1,10 @@
 import {useContext, useEffect, useState} from "react"
 import AniListUsernameDisplay from "@/components/AniListUsernameDisplay.jsx";
 import AniListUsernameInput from "@/components/AniListUsernameInput.jsx";
-import {AppContext} from "@/context/AppContext.jsx"
+import {UserContext} from "@/context/UserContext.jsx"
 
 const AniListUsername = () => {
-  const {username, setUsername, setRefresh} = useContext(AppContext);
+  const {username, setUsername, setRefresh} = useContext(UserContext);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
