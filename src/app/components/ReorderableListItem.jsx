@@ -1,20 +1,30 @@
-import {useEffect, useState} from "react";
-import {ArrowDown, ArrowUp} from "lucide-react";
-import {searchAnimeByName} from "@/services/IndexedDB.js";
+import { useEffect, useState } from "react";
+import { ArrowDown, ArrowUp ,ArrowRight} from "lucide-react";
+import { searchAnimeByName } from "@/services/IndexedDB.js";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
 
 const ReorderableListItem = () => {
   const [animeName, setAnimeName] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedAnime, setSelectedAnime] = useState(null);
+  const [showEpisodes, setShowEpisodes] = useState(false);
   useEffect(() => {
     if (animeName) {
       searchAnimeByName(animeName)
         .then((res) => setResults(res))
-        .catch((err) => console.error(err))
+        .catch((err) => console.error(err));
     } else {
-      setResults([])
+      setResults([]);
     }
-  }, [animeName])
+  }, [animeName]);
+
+  const handleSubmit = () => {
+    const selected = results.find(anime => anime.englishName.toLowerCase() === animeName.toLowerCase());
+    if (selected) {
+      setSelectedAnime(selected);
+      setShowEpisodes(true);
+    }
+  }
 
   return (
     <div className="flex bg-red-200">
@@ -29,24 +39,27 @@ const ReorderableListItem = () => {
       <MaxWidthWrapper>
         <div className="flex flex-col">
           <label htmlFor="input">Enter Anime Name:</label>
-          <input
-            type="text"
-            className="rounded-sm h-6 "
-            value={animeName}
-            onChange={(e) => {
-              setAnimeName(e.target.value);
-            }}
-            list="animeName"
-          />
-          <span className=" mt-2">Episode no:</span>
+          <div className="flex items-center">
+            <input
+              type="text"
+              className="rounded-sm h-6 w-3/4 border-2 border-gray-300 p-2 mt-2"
+              value={animeName}
+              onChange={(e) => {
+                setAnimeName(e.target.value);
+                setShowEpisodes(false);
+              }}
+              list="animeName"
+            />
+            <ArrowRight className="mt-2 ml-1" onClick={handleSubmit}></ArrowRight>
+          </div>
+          <span className=" mt-2">Episode no: {showEpisodes && selectedAnime ? selectedAnime.episodes : ''}</span>
+          <span>Id: {showEpisodes && selectedAnime ? selectedAnime.id : ''}</span>
 
           <datalist id="animeName">
             {results.map((anime) => (
-              <option key={anime.id} value={anime.englishName}/>
+              <option key={anime.id} value={anime.englishName} />
             ))}
           </datalist>
-
-
         </div>
       </MaxWidthWrapper>
     </div>
