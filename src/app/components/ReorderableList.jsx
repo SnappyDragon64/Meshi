@@ -1,9 +1,10 @@
 import ReorderableListItem from "@/components/ReorderableListItem.jsx";
 
-const ReorderableList = () => {
+const ReorderableList = ({animeMap, setAnimeMap}) => {
   return (
-    <div className='h-[500px] w-3/4 '>
-      <ReorderableListItem></ReorderableListItem>
+    <div className="w-full flex flex-col gap-4">
+      <ReorderableListItem animeMap={animeMap} index={0}/>
+      <ReorderableListItem animeMap={animeMap} index={1}/>
     </div>
   )
 }

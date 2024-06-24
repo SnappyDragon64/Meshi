@@ -98,7 +98,6 @@ export function searchAnimeByName(query) {
         cursor.continue();
       } else {
         const result = [...priority, ...other]
-        console.log(result)
         resolve(result);
       }
     };
