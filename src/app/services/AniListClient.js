@@ -40,33 +40,36 @@ async function postAniListQuery(query, variables) {
 export async function fetchList(username) {
   const query = `
             query ($username: String, $type: MediaType, $status: MediaListStatus) {
-                MediaListCollection(userName: $username, type: $type, status: $status) {
-                    lists {
-                        entries {
-                            media {
-                                id
-                                title {
-                                    romaji
-                                    english
-                                }
-                                episodes
-                                duration
-                                format
-                                genres
-                            }
-                            startedAt {
-                                year
-                                month
-                                day
-                            }
-                            completedAt {
-                                year
-                                month
-                                day
-                            }
-                        }
+              MediaListCollection(userName: $username, type: $type, status: $status) {
+                lists {
+                  entries {
+                    media {
+                      id
+                      title {
+                        romaji
+                        english
+                      }
+                      episodes
+                      duration
+                      format
+                      genres
+                      coverImage {
+                        medium
+                      }
                     }
+                    startedAt {
+                      year
+                      month
+                      day
+                    }
+                    completedAt {
+                      year
+                      month
+                      day
+                    }
+                  }
                 }
+              }
             }
         `;
 

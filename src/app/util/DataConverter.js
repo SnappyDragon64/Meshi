@@ -6,6 +6,7 @@ function formatEntry(entry) {
       episodes,
       duration,
       genres,
+      coverImage: {medium},
     },
     startedAt,
     completedAt,
@@ -20,6 +21,7 @@ function formatEntry(entry) {
     genres: genres,
     startedAt: startedAt,
     completedAt: completedAt,
+    imageUrl: medium,
   }
 }
 
