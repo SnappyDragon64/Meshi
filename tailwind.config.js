@@ -40,8 +40,8 @@ module.exports = {
         "theme-color-highlight": "#707CFF",
         "theme-color-header": "#272A54",
         "theme-color-primary": "#252A54",
-        "theme-color-secondary": "#1C1F38",
-        "theme-color-tertiary": "#0F112D",
+        "theme-color-secondary": "#1A1B32",
+        "theme-color-tertiary": "#0d0f28",
         "theme-text-color": "#c4c4c4",
         "theme-text-color-highlight": "#ffffff"
       },

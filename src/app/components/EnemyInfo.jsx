@@ -1,6 +1,6 @@
 const EnemyInfo = ({name, hp, weaknesses, resistances, image}) => {
   return (
-    <div className="w-full grid rounded-lg overflow-hidden">
+    <div className="w-full grid rounded-xl overflow-hidden">
       <div className="col-start-1 row-start-1 z-0">
         <div
           className="bg-theme-color-primary w-full h-full"/>
