@@ -2,12 +2,12 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/
 import {useContext} from "react";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 
-const SelectWave = () => {
+const SelectWave = ({selectedWave, onWaveChange}) => {
   const {challenge} = useContext(ChallengeContext);
 
   return (
-    <Select defaultValue={0}>
-      <SelectTrigger className="w-[180px]">
+    <Select value={selectedWave} onValueChange={onWaveChange}>
+      <SelectTrigger className="w-[120px]">
         <SelectValue placeholder="Theme"/>
       </SelectTrigger>
       <SelectContent>
