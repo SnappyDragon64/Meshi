@@ -2,7 +2,9 @@ const Spinner = ({type = "normal"}) => {
   const kaomoji = type === "mini" ? "♨" : "( ˘▽˘)っ♨";
 
   return (
-    <p className="text-theme-text-color animate-spin">{kaomoji}</p>
+    <div className="grow items-center flex my-auto">
+      <p className="h-fit text-theme-text-color animate-spin">{kaomoji}</p>
+    </div>
   );
 }
 
