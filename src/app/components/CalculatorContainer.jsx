@@ -53,7 +53,7 @@ function CalculatorWindow() {
   };
 
   return (
-    <div className="grow flex flex-col justify-between items-center">
+    <div className="grow flex flex-col justify-between">
       {content[status]}
     </div>
   );
