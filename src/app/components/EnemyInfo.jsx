@@ -10,7 +10,7 @@ const EnemyInfo = ({name, hp, weaknesses, resistances, image}) => {
       </div>
       <div className="col-start-1 row-start-1 z-20">
         <div
-            className="bg-gradient-to-t from-theme-color-tertiary via-theme-color-tertiary via-20% to-transparent opacity-80 w-full h-full"/>
+          className="bg-gradient-to-t from-theme-color-tertiary via-theme-color-tertiary via-20% to-transparent opacity-80 w-full h-full"/>
       </div>
       <div className="col-start-1 row-start-1 z-30 flex">
         <div className="bg-theme-color-highlight w-2 h-full"/>

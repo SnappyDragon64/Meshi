@@ -3,17 +3,21 @@ import {Button} from "@/components/Button.jsx";
 import ReorderableList from "@/components/ReorderableList.jsx";
 import SelectLanguage from "@/components/SelectLanguage.jsx";
 import {useState} from "react";
+import {DatePicker} from "@/components/DatePicker.jsx";
+import * as React from "react";
 
 const Calculator = () => {
   const [wave, setWave] = useState(0);
   const [language, setLanguage] = useState("english");
+  const [date, setDate] = React.useState(null)
 
   return (
     <div className="grow flex flex-col pt-6 gap-6">
-      <div className="flex flex-col items-center gap-2 lg:flex-row justify-between">
-        <div className="flex flex-col gap-2 lg:flex-row">
-          <SelectWave selectedWave={wave} onWaveChange={setWave}/>
-          <SelectLanguage selectedLanguage={language} onLanguageChange={setLanguage}/>
+      <div className="flex flex-col items-stretch gap-2 md:flex-row justify-between">
+        <div className="flex flex-wrap gap-2 md:flex-row md:flex-nowrap">
+          <SelectWave selectedWave={wave} onWaveChange={setWave} className="grow"/>
+          <SelectLanguage selectedLanguage={language} onLanguageChange={setLanguage} className="grow"/>
+          <DatePicker date={date} setDate={setDate}/>
         </div>
         <Button>Copy</Button>
       </div>

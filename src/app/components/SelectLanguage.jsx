@@ -3,9 +3,9 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/
 
 const SelectLanguage = ({selectedLanguage, onLanguageChange}) => {
   return (
-    <Select  value={selectedLanguage} onValueChange={onLanguageChange}>
-      <SelectTrigger className="w-[120px]">
-        <SelectValue placeholder="Theme"/>
+    <Select value={selectedLanguage} onValueChange={onLanguageChange}>
+      <SelectTrigger className="min-w-28">
+        <SelectValue/>
       </SelectTrigger>
       <SelectContent>
         <SelectItem key="english" value="english">English</SelectItem>

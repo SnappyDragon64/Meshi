@@ -7,8 +7,8 @@ const SelectWave = ({selectedWave, onWaveChange}) => {
 
   return (
     <Select value={selectedWave} onValueChange={onWaveChange}>
-      <SelectTrigger className="w-[120px]">
-        <SelectValue placeholder="Theme"/>
+      <SelectTrigger className="min-w-28">
+        <SelectValue/>
       </SelectTrigger>
       <SelectContent>
         {

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUp ,ArrowRight} from "lucide-react";
-import { searchAnimeByName } from "@/services/IndexedDB.js";
+import {useEffect, useState} from "react";
+import {ArrowDown, ArrowRight, ArrowUp} from "lucide-react";
+import {searchAnimeByName} from "@/services/IndexedDB.js";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
 
 const ReorderableListItem = () => {
@@ -57,7 +57,7 @@ const ReorderableListItem = () => {
 
           <datalist id="animeName">
             {results.map((anime) => (
-              <option key={anime.id} value={anime.englishName} />
+              <option key={anime.id} value={anime.englishName}/>
             ))}
           </datalist>
         </div>
