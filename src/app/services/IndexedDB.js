@@ -1,3 +1,5 @@
+import {toDate} from "@/util/Utils.js";
+
 let db;
 
 export async function initIndexedDB() {
@@ -84,48 +86,7 @@ export async function storeEntries(entries) {
     };
   });
 }
-
-export function searchAnimeByName(query) {
-  return new Promise((resolve, reject) => {
-    if (!db) {
-      reject("IndexedDB is not initialized");
-      return;
-    }
-
-    const transaction = db.transaction("anime", "readonly");
-    const animeStore = transaction.objectStore("anime");
-    const index = animeStore.index("byEnglishName");
-    const priority = [];
-    const other = [];
-
-    index.openCursor().onsuccess = (e) => {
-      const cursor = e.target.result;
-
-      if (cursor) {
-        if (
-          cursor.value.englishName.toLowerCase().startsWith(query.toLowerCase())
-        ) {
-          priority.push(cursor.value);
-        } else if (
-          cursor.value.englishName.toLowerCase().includes(query.toLowerCase())
-        ) {
-          other.push(cursor.value)
-        }
-
-        cursor.continue();
-      } else {
-        const result = [...priority, ...other]
-        resolve(result);
-      }
-    };
-
-    index.openCursor().onerror = (e) => {
-      reject(e.target.error);
-    };
-  });
-}
-
-export function getAnime() {
+export function getAnime(challengeStartDate = null) {
   return new Promise((resolve, reject) => {
     if (!db) {
       reject("IndexedDB is not initialized");
@@ -141,7 +102,12 @@ export function getAnime() {
       const cursor = e.target.result;
 
       if (cursor) {
-        result.push(cursor.value)
+        const anime = cursor.value;
+
+        if (!challengeStartDate || toDate(anime.startedAt) >= challengeStartDate) {
+          result.push(anime);
+        }
+
         cursor.continue();
       } else {
         resolve(result);

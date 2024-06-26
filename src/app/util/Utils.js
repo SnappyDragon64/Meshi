@@ -26,3 +26,7 @@ export function formatDate(date) {
 
   return `${year}-${month}-${day}`;
 }
+
+export function toDate(date) {
+  return new Date(date.year, date.month - 1, date.day);
+}

@@ -21,15 +21,17 @@ import {CommandList} from "cmdk";
 import {useEffect, useState} from "react";
 import {getAnime} from "@/services/IndexedDB.js";
 
-export function AnimeCombobox({getItemAnime, setItemAnime}) {
+export function AnimeCombobox({getItemAnime, setItemAnime, date}) {
   const [results, setResults] = useState([]);
   const [open, setOpen] = React.useState(false)
 
   useEffect(() => {
-    getAnime()
-      .then((res) => setResults(res))
+    getAnime(date)
+      .then((res) => {
+        setResults(res);
+      })
       .catch((err) => console.error(err));
-  }, []);
+  }, [date]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

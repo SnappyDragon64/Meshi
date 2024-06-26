@@ -2,8 +2,13 @@ import {ChevronDown, ChevronUp} from "lucide-react";
 import {Button} from "@/components/Button.jsx";
 import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 import {cn} from "@/util/Utils.js";
+import calculateDamage from "@/util/DamageCalculator.js";
+import {useContext} from "react";
+import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 
-const ReorderableListItem = ({animeList, setAnimeList, index}) => {
+const ReorderableListItem = ({animeList, setAnimeList, index, date}) => {
+  const {challenge} = useContext(ChallengeContext);
+
   const getAnime = () => {
     return animeList[index];
   }
@@ -12,6 +17,8 @@ const ReorderableListItem = ({animeList, setAnimeList, index}) => {
     const list = [...animeList]
     list[index] = anime;
     setAnimeList(list);
+    const result = calculateDamage(challenge.waves[1], animeList);
+    console.log(result);
   }
 
   const moveUpDisabled = () => {
@@ -61,7 +68,7 @@ const ReorderableListItem = ({animeList, setAnimeList, index}) => {
         </div>
       </div>
       <div className="p-2 grow">
-        <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime}/>
+        <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime} date={date}/>
       </div>
     </div>
   );
