@@ -12,8 +12,7 @@ const AniListUsernameDisplay = ({username, onEdit, onRefresh}) => {
         <RotateCw className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
       </Button>
     </div>
-  )
-    ;
+  );
 };
 
 export default AniListUsernameDisplay;

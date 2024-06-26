@@ -27,19 +27,18 @@ function CalculatorWindow() {
 
   useEffect(() => {
     if (username && refresh) {
-      setRefresh(false)
+      setRefresh(false);
       setStatus(Status.LOADING);
 
       fetchList(username)
         .then(result => {
           if (result.success) {
-            const data = result.data
-            const entries = data.MediaListCollection.lists[0].entries
-            const convertedEntries = formatEntries(entries)
-            storeEntries(convertedEntries)
-            setStatus(Status.SUCCESS)
+            const data = result.data;
+            const entries = data.MediaListCollection.lists[0].entries;
+            const convertedEntries = formatEntries(entries);
+            storeEntries(convertedEntries).then(() => setStatus(Status.SUCCESS));
           } else {
-            setStatus(Status.ERROR)
+            setStatus(Status.ERROR);
           }
         });
     }

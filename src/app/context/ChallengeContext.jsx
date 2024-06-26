@@ -14,7 +14,6 @@ export const ChallengeProvider = ({children}) => {
     const loadDefaultChallenge = async () => {
       const trainingGroundsChallenge = await getChallenge("training_grounds");
       setChallenge(trainingGroundsChallenge);
-
     };
 
     loadDefaultChallenge();

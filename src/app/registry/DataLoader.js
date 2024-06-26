@@ -1,6 +1,6 @@
 import {getRegistry} from "@/registry/Registries.js";
 
-export function loadData() {
+export async function loadData() {
   const files = import.meta.glob("/src/resources/data/*/*.json");
 
   for (const file in files) {

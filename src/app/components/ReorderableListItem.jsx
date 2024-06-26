@@ -1,34 +1,15 @@
 import {useEffect, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {Button} from "@/components/Button.jsx";
-import {searchAnimeByName} from "@/services/IndexedDB.js";
+import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 
 const ReorderableListItem = ({animeMap, index}) => {
-  const [results, setResults] = useState([]);
-  const [anime, setAnime] = useState({});
-  const [animeName, setAnimeName] = useState("");
+  const [anime, setAnime] = useState(null);
 
   useEffect(() => {
-    if (animeName) {
-      searchAnimeByName(animeName)
-        .then((res) => setResults(res))
-        .catch((err) => console.error(err));
-    } else {
-      setResults([]);
-    }
-  }, [animeName]);
-
-  const handleInput = (e) => {
-    setAnimeName(e.target.value);
-    const selected = results.find(anime => anime.englishName.toLowerCase() === animeName.toLowerCase());
-    console.log(animeName)
-    console.log(selected)
-    if (selected) {
-      setAnime(selected);
-      animeMap[index] = anime;
-      console.log(anime)
-    }
-  }
+    animeMap[index] = anime;
+    console.log(animeMap)
+  }, [anime, animeMap, index]);
 
   return (
     <div className="grow flex bg-theme-color-primary rounded-lg overflow-hidden">
@@ -49,23 +30,11 @@ const ReorderableListItem = ({animeMap, index}) => {
           </div>
         </div>
         <div className="col-start-1 row-start-1 z-10">
-          {anime.imageUrl && <img src={anime.imageUrl} className="w-full h-full"/>}
+          {anime && anime.imageUrl && <img src={anime.imageUrl} className="w-full h-full"/>}
         </div>
       </div>
-      <div className="p-2">
-        <input
-          type="text"
-          className="text-md text-theme-text-color bg-theme-color-secondary focus:outline-0 p-1 rounded-lg"
-          value={animeName}
-          placeholder="Enter Anime"
-          onInput={handleInput}
-          list="animeName"
-        />
-        <datalist id="animeName">
-          {results.map((anime) => (
-            <option key={anime.id} value={anime.englishName}/>
-          ))}
-        </datalist>
+      <div className="p-2 grow">
+        <AnimeCombobox anime={anime} setAnime={setAnime}/>
       </div>
     </div>
   );

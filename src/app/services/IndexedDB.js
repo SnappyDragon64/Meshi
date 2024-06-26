@@ -1,27 +1,31 @@
 let db;
 
-export function initIndexedDB() {
-  const request = indexedDB.open("ListDB", 1);
+export async function initIndexedDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("ListDB", 1);
 
-  request.onupgradeneeded = (e) => {
-    db = e.target.result;
+    request.onupgradeneeded = (e) => {
+      db = e.target.result;
 
-    const animeStore = db.createObjectStore("anime", {keyPath: "id"});
-    animeStore.createIndex("byEnglishName", "englishName", {unique: true});
-    animeStore.createIndex("byRomajiName", "romajiName", {unique: true});
-  };
+      const animeStore = db.createObjectStore("anime", { keyPath: "id" });
+      animeStore.createIndex("byEnglishName", "englishName", { unique: true });
+      animeStore.createIndex("byRomajiName", "romajiName", { unique: true });
+    };
 
-  request.onsuccess = (e) => {
-    db = e.target.result;
-    console.log("IndexedDB opened successfully");
-  };
+    request.onsuccess = (e) => {
+      db = e.target.result;
+      console.log("IndexedDB opened successfully");
+      resolve(db);
+    };
 
-  request.onerror = (e) => {
-    console.error("Error opening IndexedDB:", e.target.errorCode);
-  };
+    request.onerror = (e) => {
+      console.error("Error opening IndexedDB:", e.target.errorCode);
+      reject(e);
+    };
+  });
 }
 
-export function storeEntries(entries) {
+export async function storeEntries(entries) {
   if (!db) {
     console.error("IndexedDB is not initialized");
     return;
@@ -29,43 +33,56 @@ export function storeEntries(entries) {
 
   db.close();
 
-  const request = indexedDB.open("ListDB", 1);
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("ListDB", 1);
 
-  request.onsuccess = (e) => {
-    db = e.target.result;
+    request.onsuccess = (e) => {
+      db = e.target.result;
 
-    const transaction = db.transaction("anime", "readwrite");
-    const animeStore = transaction.objectStore("anime");
+      const transaction = db.transaction("anime", "readwrite");
+      const animeStore = transaction.objectStore("anime");
 
-    const clearRequest = animeStore.clear();
+      const clearRequest = animeStore.clear();
 
-    clearRequest.onsuccess = () => {
-      entries.forEach((anime) => {
-        const addRequest = animeStore.add(anime);
+      clearRequest.onsuccess = () => {
+        const addPromises = entries.map((anime) => {
+          return new Promise((resolve, reject) => {
+            const addRequest = animeStore.add(anime);
 
-        addRequest.onsuccess = () => {
-          console.log(`Anime "${anime.englishName}" added`);
-        };
+            addRequest.onsuccess = () => {
+              console.log(`Anime "${anime.englishName}" added`);
+              resolve();
+            };
 
-        addRequest.onerror = (e) => {
-          console.error(
-            `Error adding anime "${anime.englishName}":`,
-            e.target.error
-          );
-        };
-      });
+            addRequest.onerror = (e) => {
+              console.error(`Error adding anime "${anime.englishName}":`, e.target.error);
+              reject(e);
+            };
+          });
+        });
 
-      console.log("Added entries successfully");
+        Promise.all(addPromises)
+          .then(() => {
+            console.log("Added entries successfully");
+            resolve();
+          })
+          .catch((error) => {
+            console.error("Error adding entries:", error);
+            reject(error);
+          });
+      };
+
+      clearRequest.onerror = (e) => {
+        console.error("Error clearing anime:", e.target.error);
+        reject(e);
+      };
     };
 
-    clearRequest.onerror = (e) => {
-      console.error("Error clearing anime:", e.target.error);
+    request.onerror = (e) => {
+      console.error("Error opening IndexedDB:", e.target.errorCode);
+      reject(e);
     };
-  };
-
-  request.onerror = (e) => {
-    console.error("Error opening IndexedDB:", e.target.errorCode);
-  };
+  });
 }
 
 export function searchAnimeByName(query) {
@@ -98,6 +115,35 @@ export function searchAnimeByName(query) {
         cursor.continue();
       } else {
         const result = [...priority, ...other]
+        resolve(result);
+      }
+    };
+
+    index.openCursor().onerror = (e) => {
+      reject(e.target.error);
+    };
+  });
+}
+
+export function getAnime() {
+  return new Promise((resolve, reject) => {
+    if (!db) {
+      reject("IndexedDB is not initialized");
+      return;
+    }
+
+    const transaction = db.transaction("anime", "readonly");
+    const animeStore = transaction.objectStore("anime");
+    const index = animeStore.index("byEnglishName");
+    const result = [];
+
+    index.openCursor().onsuccess = (e) => {
+      const cursor = e.target.result;
+
+      if (cursor) {
+        result.push(cursor.value)
+        cursor.continue();
+      } else {
         resolve(result);
       }
     };
