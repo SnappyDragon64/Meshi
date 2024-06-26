@@ -5,12 +5,18 @@ import SelectLanguage from "@/components/SelectLanguage.jsx";
 import {useState} from "react";
 import {DatePicker} from "@/components/DatePicker.jsx";
 import * as React from "react";
+import {CirclePlus} from "lucide-react";
 
 const Calculator = () => {
   const [wave, setWave] = useState(0);
   const [language, setLanguage] = useState("english");
   const [date, setDate] = React.useState(null)
   const [animeList, setAnimeList] = React.useState([null, null, null])
+
+  const addNewItem = () => {
+    const list = [...animeList, null];
+    setAnimeList(list);
+  }
 
   return (
     <div className="grow flex flex-col pt-6 gap-6">
@@ -22,8 +28,11 @@ const Calculator = () => {
         </div>
         <Button>Copy</Button>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center gap-4">
         <ReorderableList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language}/>
+        <Button variant="link" size="icon" onClick={addNewItem} className="h-6 w-6">
+          <CirclePlus className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
+        </Button>
       </div>
     </div>
   );
