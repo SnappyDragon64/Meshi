@@ -1,7 +1,6 @@
 import ReorderableListItem from "@/components/ReorderableListItem.jsx";
 
 const ReorderableList = ({animeList, setAnimeList}) => {
-
   return (
     <div className="w-full flex flex-col gap-4">
       {

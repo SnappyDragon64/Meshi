@@ -10,7 +10,7 @@ const Calculator = () => {
   const [wave, setWave] = useState(0);
   const [language, setLanguage] = useState("english");
   const [date, setDate] = React.useState(null)
-  const [animeList, setAnimeList] = React.useState([null])
+  const [animeList, setAnimeList] = React.useState([null, null, null])
 
   return (
     <div className="grow flex flex-col pt-6 gap-6">

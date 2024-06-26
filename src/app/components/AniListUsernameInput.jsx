@@ -26,7 +26,7 @@ const AniListUsernameInput = ({username, onSubmit}) => {
                className="text-md text-theme-text-color bg-theme-color-secondary focus:outline-0 p-1 rounded-lg"
         />
         <Button variant="link" size="icon" type="submit" disabled={!name}
-                className={cn("h-4 w-4", !name ? "cursor-not-allowed opacity-50" : "")}>
+                className={cn("h-4 w-4", !name ? "cursor-not-allowed opacity-10" : "")}>
           <LogIn
             className={!name ? "stroke-theme-text-color" : "stroke-theme-text-color hover:stroke-theme-text-color-highlight"}/>
         </Button>
