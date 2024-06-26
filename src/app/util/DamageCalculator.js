@@ -58,8 +58,8 @@ function calculateDamage(wave, attacks) {
     damage_sustained[current_index] += damage;
     damage_dealt.push(damage);
 
-    if (damage_sustained[current_index] >= wave[current_index].hp) {
-      current_index += 1;
+    if (Math.floor(damage_sustained[current_index]) >= current_enemy.hp) {
+      current_index = current_index + 1;
 
       if (current_index >= wave.length) {
         break;
