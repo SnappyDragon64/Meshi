@@ -13,7 +13,6 @@ async function repackage(challenge) {
   });
   const enemies = await Promise.all(enemyPromises);
 
-
   const wavePromises = challenge.waves.map(async (id) => {
     return await getWave(id);
   });

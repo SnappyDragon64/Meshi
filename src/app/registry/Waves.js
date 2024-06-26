@@ -7,7 +7,8 @@ export async function getWave(id) {
 }
 
 async function repackage(wave) {
-  return wave.map(async (enemyId) => {
+  const enemyPromises = wave.map(async (enemyId) => {
     return await getEnemy(enemyId);
-  })
+  });
+  return await Promise.all(enemyPromises);
 }
