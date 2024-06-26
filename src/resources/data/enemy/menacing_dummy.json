@@ -8,7 +8,7 @@
       "conditions": [
         {
           "type": "includes",
-          "attribute": "genre",
+          "attribute": "genres",
           "value": "Comedy"
         }
       ]
@@ -21,7 +21,7 @@
       "conditions": [
         {
           "type": "includes",
-          "attribute": "genre",
+          "attribute": "genres",
           "value": "Action"
         }
       ]
