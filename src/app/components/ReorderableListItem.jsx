@@ -6,7 +6,7 @@ import calculateDamage from "@/util/DamageCalculator.js";
 import {useContext} from "react";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 
-const ReorderableListItem = ({animeList, setAnimeList, index, date}) => {
+const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) => {
   const {challenge} = useContext(ChallengeContext);
 
   const getAnime = () => {
@@ -68,7 +68,7 @@ const ReorderableListItem = ({animeList, setAnimeList, index, date}) => {
         </div>
       </div>
       <div className="p-2 grow">
-        <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime} date={date}/>
+        <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime} date={date} language={language}/>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const Calculator = () => {
         <Button>Copy</Button>
       </div>
       <div className="flex flex-col items-center">
-        <ReorderableList animeList={animeList} setAnimeList={setAnimeList} date={date}/>
+        <ReorderableList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language}/>
       </div>
     </div>
   );

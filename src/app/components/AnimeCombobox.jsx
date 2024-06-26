@@ -21,17 +21,21 @@ import {CommandList} from "cmdk";
 import {useEffect, useState} from "react";
 import {getAnime} from "@/services/IndexedDB.js";
 
-export function AnimeCombobox({getItemAnime, setItemAnime, date}) {
+export function AnimeCombobox({getItemAnime, setItemAnime, date, language}) {
   const [results, setResults] = useState([]);
   const [open, setOpen] = React.useState(false)
 
   useEffect(() => {
-    getAnime(date)
+    getAnime(language, date)
       .then((res) => {
         setResults(res);
       })
       .catch((err) => console.error(err));
-  }, [date]);
+  }, [date, language]);
+
+  const getKey = () => {
+    return language + "Name";
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -43,7 +47,7 @@ export function AnimeCombobox({getItemAnime, setItemAnime, date}) {
           className="w-full justify-between"
         >
           {getItemAnime()
-            ? getItemAnime().englishName
+            ? getItemAnime()[getKey()]
             : "Select anime"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -69,7 +73,7 @@ export function AnimeCombobox({getItemAnime, setItemAnime, date}) {
                       getItemAnime() === result ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {result.englishName}
+                  {result[getKey()]}
                 </CommandItem>
               ))}
             </CommandGroup>

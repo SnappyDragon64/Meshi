@@ -86,7 +86,7 @@ export async function storeEntries(entries) {
     };
   });
 }
-export function getAnime(challengeStartDate = null) {
+export function getAnime(language = "english", challengeStartDate = null) {
   return new Promise((resolve, reject) => {
     if (!db) {
       reject("IndexedDB is not initialized");
@@ -95,7 +95,8 @@ export function getAnime(challengeStartDate = null) {
 
     const transaction = db.transaction("anime", "readonly");
     const animeStore = transaction.objectStore("anime");
-    const index = animeStore.index("byEnglishName");
+    const indexName = language === "romaji" ? "byRomajiName" : "byEnglishName"
+    const index = animeStore.index(indexName);
     const result = [];
 
     index.openCursor().onsuccess = (e) => {
