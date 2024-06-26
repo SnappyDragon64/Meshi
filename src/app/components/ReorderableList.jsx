@@ -1,12 +1,16 @@
 import ReorderableListItem from "@/components/ReorderableListItem.jsx";
-import {useEffect} from "react";
 
-const ReorderableList = ({animeMap, setAnimeMap}) => {
+const ReorderableList = ({animeList, setAnimeList}) => {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <ReorderableListItem animeMap={animeMap} index={0}/>
-      <ReorderableListItem animeMap={animeMap} index={1}/>
+      {
+        animeList.map((val, index) => {
+          return (
+            <ReorderableListItem key={index} animeList={animeList} setAnimeList={setAnimeList} index={index}/>
+          )
+        })
+      }
     </div>
   )
 }

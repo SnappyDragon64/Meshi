@@ -10,7 +10,7 @@ const Calculator = () => {
   const [wave, setWave] = useState(0);
   const [language, setLanguage] = useState("english");
   const [date, setDate] = React.useState(null)
-  const [animeMap, setAnimeMap] = React.useState({})
+  const [animeList, setAnimeList] = React.useState([null])
 
   return (
     <div className="grow flex flex-col pt-6 gap-6">
@@ -23,7 +23,7 @@ const Calculator = () => {
         <Button>Copy</Button>
       </div>
       <div className="flex flex-col items-center">
-        <ReorderableList animeMap={animeMap} setAnimeMap={setAnimeMap}/>
+        <ReorderableList animeList={animeList} setAnimeList={setAnimeList}/>
       </div>
     </div>
   );

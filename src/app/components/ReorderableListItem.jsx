@@ -1,15 +1,17 @@
-import {useEffect, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {Button} from "@/components/Button.jsx";
 import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 
-const ReorderableListItem = ({animeMap, index}) => {
-  const [anime, setAnime] = useState(null);
+const ReorderableListItem = ({animeList, setAnimeList, index}) => {
+  const getAnime = () => {
+    return animeList[index];
+  }
 
-  useEffect(() => {
-    animeMap[index] = anime;
-    console.log(animeMap)
-  }, [anime, animeMap, index]);
+  const setAnime = (anime) => {
+    const list = [...animeList]
+    list[index] = anime;
+    setAnimeList(list);
+  }
 
   return (
     <div className="grow flex bg-theme-color-primary rounded-lg overflow-hidden">
@@ -30,11 +32,11 @@ const ReorderableListItem = ({animeMap, index}) => {
           </div>
         </div>
         <div className="col-start-1 row-start-1 z-10">
-          {anime && anime.imageUrl && <img src={anime.imageUrl} className="w-full h-full"/>}
+          {getAnime() && getAnime().imageUrl && <img src={getAnime().imageUrl} className="w-full h-full"/>}
         </div>
       </div>
       <div className="p-2 grow">
-        <AnimeCombobox anime={anime} setAnime={setAnime}/>
+        <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime}/>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ import {CommandList} from "cmdk";
 import {useEffect, useState} from "react";
 import {getAnime} from "@/services/IndexedDB.js";
 
-export function AnimeCombobox({anime, setAnime}) {
+export function AnimeCombobox({getItemAnime, setItemAnime}) {
   const [results, setResults] = useState([]);
   const [open, setOpen] = React.useState(false)
 
@@ -40,8 +40,8 @@ export function AnimeCombobox({anime, setAnime}) {
           aria-expanded={open}
           className="w-full justify-between"
         >
-          {anime
-            ? anime.englishName
+          {getItemAnime()
+            ? getItemAnime().englishName
             : "Select anime"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -57,14 +57,14 @@ export function AnimeCombobox({anime, setAnime}) {
                   key={index}
                   value={result}
                   onSelect={() => {
-                    setAnime(result);
+                    setItemAnime(result);
                     setOpen(false);
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      anime === result ? "opacity-100" : "opacity-0"
+                      getItemAnime() === result ? "opacity-100" : "opacity-0"
                     )}
                   />
                   {result.englishName}
