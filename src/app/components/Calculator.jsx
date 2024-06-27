@@ -2,12 +2,16 @@ import SelectWave from "@/components/SelectWave.jsx";
 import {Button} from "@/components/Button.jsx";
 import ReorderableList from "@/components/ReorderableList.jsx";
 import SelectLanguage from "@/components/SelectLanguage.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {DatePicker} from "@/components/DatePicker.jsx";
 import {CirclePlus} from "lucide-react";
-import {toDate, toDateJson} from "@/util/Utils.js";
+import {ChallengeContext} from "@/context/ChallengeContext.jsx";
+import calculateDamage from "@/util/DamageCalculator.js";
+import {getWaveInfo, toDate, toDateJson} from "@/util/DataConverter.js";
 
 const Calculator = () => {
+  const {challenge} = useContext(ChallengeContext);
+
   const [wave, setWave] = useState(() => {
     const savedWave = localStorage.getItem("wave");
     return savedWave ? JSON.parse(savedWave) : 0;
@@ -28,6 +32,11 @@ const Calculator = () => {
     return savedAnimeList ? JSON.parse(savedAnimeList) : [null, null, null];
   });
 
+  const [results, setResults] = useState(() => {
+    const savedResults = localStorage.getItem("results");
+    return savedResults ? JSON.parse(savedResults) : {};
+  })
+
   useEffect(() => {
     localStorage.setItem("wave", JSON.stringify(wave));
   }, [wave]);
@@ -43,6 +52,25 @@ const Calculator = () => {
   useEffect(() => {
     localStorage.setItem("animeList", JSON.stringify(animeList));
   }, [animeList]);
+
+  useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(results));
+  }, [results]);
+
+  useEffect(() => {
+    try {
+      const waveObj = challenge.waves[wave];
+      const [damageDealt, attackTargets, attackTargetHPList] = calculateDamage(waveObj, animeList);
+      const [enemyNames, enemyMaxHPList] = getWaveInfo(waveObj)
+      setResults({
+        damageDealt: damageDealt,
+        attackTargets: attackTargets,
+        attackTargetHPList: attackTargetHPList,
+        enemyNames: enemyNames,
+        enemyMaxHPList: enemyMaxHPList,
+      })
+    } catch (e) { /* ignore error */ }
+  }, [animeList, wave]);
 
   const addNewItem = () => {
     const list = [...animeList, null];
@@ -60,7 +88,7 @@ const Calculator = () => {
         <Button>Copy</Button>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <ReorderableList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language}/>
+        <ReorderableList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language} results={results}/>
         <Button variant="link" size="icon" onClick={addNewItem} className="h-6 w-6">
           <CirclePlus className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
         </Button>

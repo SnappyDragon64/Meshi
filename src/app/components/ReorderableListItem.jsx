@@ -2,11 +2,9 @@ import {ChevronDown, ChevronUp, XCircle} from "lucide-react";
 import {Button} from "@/components/Button.jsx";
 import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 import {cn} from "@/util/Utils.js";
-import {useContext} from "react";
-import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import * as React from "react";
 
-const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) => {
+const ReorderableListItem = ({animeList, setAnimeList, index, date, language, results}) => {
   const getAnime = () => {
     return animeList[index];
   }
@@ -47,6 +45,12 @@ const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) =
     setAnimeList(list);
   }
 
+  const damageDealt = results.damageDealt[index];
+  const attackTarget = results.attackTargets[index];
+  const enemyRemainingHP = results.attackTargetHPList[index];
+  const enemyName = results.enemyNames[attackTarget];
+  const enemyMaxHP = results.enemyMaxHPList[attackTarget];
+
   return (
     <div className="grow flex bg-theme-color-primary rounded-lg overflow-hidden">
       <div className="min-w-[100px] min-h-[137px] grid bg-theme-color-tertiary">
@@ -69,11 +73,30 @@ const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) =
           {getAnime() && getAnime().imageUrl && <img src={getAnime().imageUrl} className="w-full h-full"/>}
         </div>
       </div>
-      <div className="p-2 grow flex gap-2">
-        <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime} date={date} language={language}/>
-        <Button variant="link" size="icon" onClick={deleteItem} className="h-6 w-6">
-          <XCircle className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
-        </Button>
+      <div className="p-2 grow flex flex-col gap-2">
+        <div className="flex gap-2">
+          <AnimeCombobox getItemAnime={getAnime} setItemAnime={setAnime} date={date} language={language}/>
+          <Button variant="link" size="icon" onClick={deleteItem} className="h-6 w-6">
+            <XCircle className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
+          </Button>
+        </div>
+        { damageDealt ?
+          (
+            <div className="grow flex flex-col md:flex-row">
+              <div className="grow my-auto">
+                <p className="text-theme-text-color text-center">Damage: {damageDealt}</p>
+              </div>
+              <div className="grow my-auto">
+                <p className="text-theme-text-color text-center">{enemyName}: {enemyRemainingHP}/{enemyMaxHP}</p>
+              </div>
+            </div>
+          ) :
+          (
+            <div className="flex my-auto">
+              <p className="grow text-theme-text-color text-center my-auto">All enemies defeated!</p>
+            </div>
+          )
+        }
       </div>
     </div>
   );

@@ -44,30 +44,37 @@ function applyMultipliers(damage, attack, conditionalMultipliers) {
 }
 
 function calculateDamage(wave, attacks) {
-  const damage_sustained = new Array(wave.length).fill(0);
-  const damage_dealt = [];
-  let current_index = 0;
+  const damageSustained = new Array(wave.length).fill(0);
+  const damageDealt = [];
+  const attackTargets = [];
+  const attackTargetHPList = [];
+  let currentIndex = 0;
 
   for (const attack of attacks) {
-    let current_enemy = wave[current_index];
+    attackTargets.push(currentIndex);
+    let currentEnemy = wave[currentIndex];
     let damage = attack.episodes * attack.duration / 10.0;
 
-    damage = applyMultipliers(damage, attack, current_enemy.weaknesses)
-    damage = applyMultipliers(damage, attack, current_enemy.resistances)
+    damage = applyMultipliers(damage, attack, currentEnemy.weaknesses);
+    damage = applyMultipliers(damage, attack, currentEnemy.resistances);
 
-    damage_sustained[current_index] += damage;
-    damage_dealt.push(damage);
+    damageSustained[currentIndex] += damage;
+    damageDealt.push(damage);
 
-    if (Math.floor(damage_sustained[current_index]) >= current_enemy.hp) {
-      current_index = current_index + 1;
+    const damageSustainedFloor = Math.floor(damageSustained[currentIndex]);
+    const remainingHP = Math.max(0, currentEnemy.hp - damageSustainedFloor);
+    attackTargetHPList.push(remainingHP);
 
-      if (current_index >= wave.length) {
+    if (damageSustainedFloor >= currentEnemy.hp) {
+      currentIndex = currentIndex + 1;
+
+      if (currentIndex >= wave.length) {
         break;
       }
     }
   }
 
-  return [damage_dealt, damage_sustained]
+  return [damageDealt, attackTargets, attackTargetHPList]
 }
 
 export default calculateDamage
