@@ -58,12 +58,15 @@ export function calculateDamage(wave, attacks) {
     damage = applyMultipliers(damage, attack, currentEnemy.weaknesses);
     damage = applyMultipliers(damage, attack, currentEnemy.resistances);
 
+    const oldDamageSustainedFloor = Math.floor(damageSustained[currentIndex]);
+
     damageSustained[currentIndex] += damage;
-    damageDealt.push(damage);
 
     const damageSustainedFloor = Math.floor(damageSustained[currentIndex]);
     const remainingHP = Math.max(0, currentEnemy.hp - damageSustainedFloor);
     attackTargetHPList.push(remainingHP);
+
+    damageDealt.push(damageSustainedFloor - oldDamageSustainedFloor);
 
     if (damageSustainedFloor >= currentEnemy.hp) {
       currentIndex = currentIndex + 1;
