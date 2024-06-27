@@ -1,6 +1,6 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
 import EnemyInfoAccordion from "@/components/EnemyInfoAccordion.jsx";
-import CalculatorWindow from "@/components/CalculatorContainer.jsx";
+import CalculatorContainer from "@/components/CalculatorContainer.jsx";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import {useContext} from "react";
 
@@ -15,7 +15,7 @@ const Main = () => {
             A calculator for AWC&apos;s {challenge.name}.
           </p>
           <EnemyInfoAccordion/>
-          <CalculatorWindow/>
+          <CalculatorContainer/>
         </div>
       </MaxWidthWrapper>
     </main>
