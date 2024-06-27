@@ -13,7 +13,7 @@ const Status = {
   ERROR: "error",
 };
 
-function CalculatorWindow() {
+function CalculatorContainer() {
   const {username, refresh, setRefresh} = useContext(UserContext);
   const [status, setStatus] = useState(Status.DEFAULT);
 
@@ -45,10 +45,10 @@ function CalculatorWindow() {
   }, [refresh, setRefresh, username]);
 
   const content = {
-    [Status.DEFAULT]: <p className="text-theme-text-color">Enter your AniList username to get started</p>,
+    [Status.DEFAULT]: <p className="text-theme-text-color text-center my-auto">Enter your AniList username to get started</p>,
     [Status.LOADING]: <Spinner/>,
     [Status.SUCCESS]: <Calculator/>,
-    [Status.ERROR]: <p className="text-theme-text-color">Error fetching data from AniList</p>,
+    [Status.ERROR]: <p className="text-theme-text-color text-center my-auto">Error fetching data from AniList</p>,
   };
 
   return (
@@ -58,4 +58,4 @@ function CalculatorWindow() {
   );
 }
 
-export default CalculatorWindow;
+export default CalculatorContainer;
