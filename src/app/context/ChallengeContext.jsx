@@ -1,14 +1,16 @@
-import {createContext, useEffect, useState} from 'react';
-import {getChallenge} from "@/registry/Challenges.js";
+import { createContext, useEffect, useState } from 'react';
+import { getChallenge } from "@/registry/Challenges.js";
+import Spinner from "@/components/Spinner.jsx";
 
 export const ChallengeContext = createContext();
 
-export const ChallengeProvider = ({children}) => {
+export const ChallengeProvider = ({ children }) => {
   const [challenge, setChallenge] = useState({
     name: "",
     enemies: [],
     waves: [],
   });
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadDefaultChallenge = async () => {
@@ -16,11 +18,15 @@ export const ChallengeProvider = ({children}) => {
       setChallenge(trainingGroundsChallenge);
     };
 
-    loadDefaultChallenge();
+    loadDefaultChallenge().then(() => setLoading(false));
   }, []);
 
+  if (isLoading) {
+    return <Spinner/>;
+  }
+
   return (
-    <ChallengeContext.Provider value={{challenge, setChallenge}}>
+    <ChallengeContext.Provider value={{ challenge, setChallenge }}>
       {children}
     </ChallengeContext.Provider>
   );

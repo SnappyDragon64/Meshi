@@ -53,27 +53,35 @@ export function calculateDamage(wave, attacks) {
   for (const attack of attacks) {
     attackTargets.push(currentIndex);
     let currentEnemy = wave[currentIndex];
-    let damage = attack.episodes * attack.duration / 10.0;
 
-    damage = applyMultipliers(damage, attack, currentEnemy.weaknesses);
-    damage = applyMultipliers(damage, attack, currentEnemy.resistances);
+    if (attack) {
+      let damage = attack.episodes * attack.duration / 10.0;
 
-    const oldDamageSustainedFloor = Math.floor(damageSustained[currentIndex]);
+      damage = applyMultipliers(damage, attack, currentEnemy.weaknesses);
+      damage = applyMultipliers(damage, attack, currentEnemy.resistances);
 
-    damageSustained[currentIndex] += damage;
+      const oldDamageSustainedFloor = Math.floor(damageSustained[currentIndex]);
 
-    const damageSustainedFloor = Math.floor(damageSustained[currentIndex]);
-    const remainingHP = Math.max(0, currentEnemy.hp - damageSustainedFloor);
-    attackTargetHPList.push(remainingHP);
+      damageSustained[currentIndex] += damage;
 
-    damageDealt.push(damageSustainedFloor - oldDamageSustainedFloor);
+      const damageSustainedFloor = Math.floor(damageSustained[currentIndex]);
+      const remainingHP = Math.max(0, currentEnemy.hp - damageSustainedFloor);
+      attackTargetHPList.push(remainingHP);
 
-    if (damageSustainedFloor >= currentEnemy.hp) {
-      currentIndex = currentIndex + 1;
+      damageDealt.push(damageSustainedFloor - oldDamageSustainedFloor);
 
-      if (currentIndex >= wave.length) {
-        break;
+      if (damageSustainedFloor >= currentEnemy.hp) {
+        currentIndex = currentIndex + 1;
+
+        if (currentIndex >= wave.length) {
+          break;
+        }
       }
+    } else {
+      damageDealt.push(0)
+      const damageSustainedFloor = Math.floor(damageSustained[currentIndex]);
+      const remainingHP = Math.max(0, currentEnemy.hp - damageSustainedFloor);
+      attackTargetHPList.push(remainingHP);
     }
   }
 

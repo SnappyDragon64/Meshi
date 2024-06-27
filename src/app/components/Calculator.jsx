@@ -65,19 +65,17 @@ const Calculator = () => {
   }, [results]);
 
   useEffect(() => {
-    try {
-      const waveObj = challenge.waves[wave];
-      const [damageDealt, attackTargets, attackTargetHPList] = calculateDamage(waveObj, animeList);
-      const [enemyNames, enemyMaxHPList] = getWaveInfo(waveObj)
-      setResults({
-        damageDealt: damageDealt,
-        attackTargets: attackTargets,
-        attackTargetHPList: attackTargetHPList,
-        enemyNames: enemyNames,
-        enemyMaxHPList: enemyMaxHPList,
-      })
-    } catch (e) { /* ignore error */ }
-  }, [animeList, wave]);
+    const waveObj = challenge.waves[wave];
+    const [damageDealt, attackTargets, attackTargetHPList] = calculateDamage(waveObj, animeList);
+    const [enemyNames, enemyMaxHPList] = getWaveInfo(waveObj);
+    setResults({
+      damageDealt: damageDealt,
+      attackTargets: attackTargets,
+      attackTargetHPList: attackTargetHPList,
+      enemyNames: enemyNames,
+      enemyMaxHPList: enemyMaxHPList,
+    })
+  }, [animeList, wave, challenge.waves]);
 
   const addNewItem = () => {
     const list = [...animeList, null];
