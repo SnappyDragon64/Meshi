@@ -6,7 +6,7 @@ const EnemyInfo = ({name, hp, weaknesses, resistances, image}) => {
           className="bg-theme-color-primary w-full h-full"/>
       </div>
       <div className="col-start-1 row-start-1 flex flex-row-reverse z-10">
-        <img src={image} className="object-cover w-1/2"/>
+        <img src={image} className="object-cover"/>
       </div>
       <div className="col-start-1 row-start-1 z-20">
         <div
