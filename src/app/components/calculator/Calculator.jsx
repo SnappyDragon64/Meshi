@@ -1,9 +1,9 @@
-import SelectWave from "@/components/SelectWave.jsx";
+import SelectWave from "@/components/calculator/SelectWave.jsx";
 import {Button} from "@/components/shadcn/Button.jsx";
-import AttackList from "@/components/AttackList.jsx";
-import SelectLanguage from "@/components/SelectLanguage.jsx";
+import AttackList from "@/components/calculator/attack/AttackList.jsx";
+import SelectLanguage from "@/components/calculator/SelectLanguage.jsx";
 import {useContext, useEffect, useState} from "react";
-import {DatePicker} from "@/components/DatePicker.jsx";
+import {DatePicker} from "@/components/calculator/DatePicker.jsx";
 import {CirclePlus} from "lucide-react";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import {calculateDamage} from "@/util/DamageCalculator.js";

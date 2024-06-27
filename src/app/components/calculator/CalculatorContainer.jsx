@@ -3,8 +3,8 @@ import {UserContext} from "@/context/UserContext.jsx";
 import {fetchList} from "@/services/AniListClient.js";
 import {formatEntries} from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
-import Spinner from "@/components/Spinner.jsx";
-import Calculator from "@/components/Calculator.jsx";
+import Spinner from "@/components/misc/Spinner.jsx";
+import Calculator from "@/components/calculator/Calculator.jsx";
 
 const Status = {
   DEFAULT: "idle",

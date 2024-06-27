@@ -1,5 +1,5 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
-import AniListUsername from "@/components/AniListUsername.jsx";
+import MaxWidthWrapper from "@/components/misc/MaxWidthWrapper.jsx";
+import AniListUsername from "@/components/username/AniListUsername.jsx";
 
 const Header = () => {
   return (

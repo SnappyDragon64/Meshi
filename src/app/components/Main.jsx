@@ -1,6 +1,6 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper.jsx";
-import EnemyInfoAccordion from "@/components/EnemyInfoAccordion.jsx";
-import CalculatorContainer from "@/components/CalculatorContainer.jsx";
+import MaxWidthWrapper from "@/components/misc/MaxWidthWrapper.jsx";
+import EnemyInfoAccordion from "@/components/info/EnemyInfoAccordion.jsx";
+import CalculatorContainer from "@/components/calculator/CalculatorContainer.jsx";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import {useContext} from "react";
 

@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from "react"
-import AniListUsernameDisplay from "@/components/AniListUsernameDisplay.jsx";
-import AniListUsernameInput from "@/components/AniListUsernameInput.jsx";
+import AniListUsernameDisplay from "@/components/username/AniListUsernameDisplay.jsx";
+import AniListUsernameInput from "@/components/username/AniListUsernameInput.jsx";
 import {UserContext} from "@/context/UserContext.jsx"
 
 const AniListUsername = () => {

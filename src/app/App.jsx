@@ -6,7 +6,7 @@ import Main from "@/components/Main.jsx";
 import {UserProvider} from "@/context/UserContext.jsx";
 import {ChallengeProvider} from "@/context/ChallengeContext.jsx";
 import "@/registry/Registries.js";
-import Spinner from "@/components/Spinner.jsx";
+import Spinner from "@/components/misc/Spinner.jsx";
 
 export default function App() {
   const [loading, setLoading] = useState(true);

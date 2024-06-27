@@ -1,4 +1,4 @@
-import AttackListItem from "@/components/AttackListItem.jsx";
+import AttackListItem from "@/components/calculator/attack/AttackListItem.jsx";
 import {useEffect, useState} from "react";
 import {getAnime} from "@/services/IndexedDB.js";
 

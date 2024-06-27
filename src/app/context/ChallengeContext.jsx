@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { getChallenge } from "@/registry/Challenges.js";
-import Spinner from "@/components/Spinner.jsx";
+import Spinner from "@/components/misc/Spinner.jsx";
 
 export const ChallengeContext = createContext();
 
