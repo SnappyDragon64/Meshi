@@ -1,14 +1,13 @@
 import {Registry} from "@/registry/Registry.js";
-import {LazyRegistry} from "@/registry/LazyRegistry.js";
 
 const META_REGISTRY = new Registry("registry");
 
-export const ENEMY_REGISTRY = createRegistry("enemy", LazyRegistry);
-export const WAVE_REGISTRY = createRegistry("wave", LazyRegistry);
-export const CHALLENGE_REGISTRY = createRegistry("challenge", LazyRegistry);
+export const ENEMY_REGISTRY = createRegistry("enemy");
+export const WAVE_REGISTRY = createRegistry("wave");
+export const CHALLENGE_REGISTRY = createRegistry("challenge");
 
-function createRegistry(id, registryClass) {
-  const registry = new registryClass(id);
+function createRegistry(id) {
+  const registry = new Registry(id);
   return META_REGISTRY.register(id, registry);
 }
 

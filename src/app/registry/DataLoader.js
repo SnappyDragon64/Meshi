@@ -10,7 +10,10 @@ export async function loadData() {
     const dir = split.pop();
 
     const registry = getRegistry(dir);
+    const obj = (await files[file]()).default;
 
-    registry.register(id, files[file]);
+    console.log(dir, id, obj);
+
+    registry.register(id, obj);
   }
 }

@@ -14,7 +14,7 @@ export const ChallengeProvider = ({ children }) => {
 
   useEffect(() => {
     const loadDefaultChallenge = async () => {
-      const trainingGroundsChallenge = await getChallenge("training_grounds");
+      const trainingGroundsChallenge = getChallenge("training_grounds");
       setChallenge(trainingGroundsChallenge);
     };
 

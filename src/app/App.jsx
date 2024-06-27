@@ -15,10 +15,9 @@ export default function App() {
     const initializeApp = async () => {
       await initIndexedDB();
       await loadData();
-      setLoading(false);
     };
 
-    initializeApp();
+    initializeApp().then(() => setLoading(false));
   }, []);
 
   return (
