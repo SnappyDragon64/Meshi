@@ -1,15 +1,12 @@
-import {ChevronDown, ChevronUp, CirclePlus, XCircle} from "lucide-react";
+import {ChevronDown, ChevronUp, XCircle} from "lucide-react";
 import {Button} from "@/components/Button.jsx";
 import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 import {cn} from "@/util/Utils.js";
-import calculateDamage from "@/util/DamageCalculator.js";
 import {useContext} from "react";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import * as React from "react";
 
 const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) => {
-  const {challenge} = useContext(ChallengeContext);
-
   const getAnime = () => {
     return animeList[index];
   }
@@ -18,8 +15,6 @@ const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) =
     const list = [...animeList]
     list[index] = anime;
     setAnimeList(list);
-    const result = calculateDamage(challenge.waves[1], animeList);
-    console.log(result);
   }
 
   const moveUpDisabled = () => {

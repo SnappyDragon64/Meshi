@@ -2,16 +2,47 @@ import SelectWave from "@/components/SelectWave.jsx";
 import {Button} from "@/components/Button.jsx";
 import ReorderableList from "@/components/ReorderableList.jsx";
 import SelectLanguage from "@/components/SelectLanguage.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {DatePicker} from "@/components/DatePicker.jsx";
-import * as React from "react";
 import {CirclePlus} from "lucide-react";
+import {toDate, toDateJson} from "@/util/Utils.js";
 
 const Calculator = () => {
-  const [wave, setWave] = useState(0);
-  const [language, setLanguage] = useState("english");
-  const [date, setDate] = React.useState(null)
-  const [animeList, setAnimeList] = React.useState([null, null, null])
+  const [wave, setWave] = useState(() => {
+    const savedWave = localStorage.getItem('wave');
+    return savedWave ? JSON.parse(savedWave) : 0;
+  });
+
+  const [language, setLanguage] = useState(() => {
+    const savedLanguage = localStorage.getItem('language');
+    return savedLanguage ? savedLanguage : "english";
+  });
+
+  const [date, setDate] = useState(() => {
+    const savedDate = localStorage.getItem('date');
+    return savedDate && savedDate !== "null" ? toDate(JSON.parse(savedDate)) : null;
+  });
+
+  const [animeList, setAnimeList] = useState(() => {
+    const savedAnimeList = localStorage.getItem('animeList');
+    return savedAnimeList ? JSON.parse(savedAnimeList) : [null, null, null];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('wave', JSON.stringify(wave));
+  }, [wave]);
+
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem('date', date ? JSON.stringify(toDateJson(date)) : null);
+  }, [date]);
+
+  useEffect(() => {
+    localStorage.setItem('animeList', JSON.stringify(animeList));
+  }, [animeList]);
 
   const addNewItem = () => {
     const list = [...animeList, null];

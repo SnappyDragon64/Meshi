@@ -30,3 +30,11 @@ export function formatDate(date) {
 export function toDate(date) {
   return new Date(date.year, date.month - 1, date.day);
 }
+
+export function toDateJson(date) {
+  return {
+    "year": date.getFullYear(),
+    "month": date.getMonth() + 1,
+    "day": date.getDate(),
+  }
+}
