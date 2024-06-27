@@ -1,14 +1,12 @@
 import {formatDate, formatDateJson, getNumberWithOrdinal} from "@/util/DataConverter.js";
 
 function generateAttack(index, anime, damageDealt, attackTarget, enemyName, enemyRemainingHP, enemyMaxHP) {
-  const attack = [
+  return [
     "",
     `${index.toString().padStart(2, "0")}) [X] __Attack ${index}__`,
     `https://anilist.co/anime/${anime.id}/`,
     `Start: ${formatDateJson(anime.startedAt)} Finish: ${formatDateJson(anime.completedAt)} // ${enemyName} ${enemyRemainingHP}/${enemyMaxHP}`,
-  ]
-
-  return attack;
+  ];
 }
 
 export function generateChallengeCode(challengeName, wave, challengeStartDate, animeList, results) {
@@ -32,7 +30,7 @@ export function generateChallengeCode(challengeName, wave, challengeStartDate, a
     const enemyName = results.enemyNames[attackTarget];
     const enemyMaxHP = results.enemyMaxHPList[attackTarget];
 
-    const attack = generateAttack(index, anime, damageDealt, attackTarget, enemyName, enemyRemainingHP, enemyMaxHP);
+    const attack = generateAttack(index + 1, anime, damageDealt, attackTarget, enemyName, enemyRemainingHP, enemyMaxHP);
     text.push(...attack);
   }
 
