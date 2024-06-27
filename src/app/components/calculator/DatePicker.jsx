@@ -21,7 +21,7 @@ export function DatePicker({date, setDate}) {
           {date ? format(date, "PPP") : <span>Challenge Start Date</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
+      <PopoverContent className="w-auto p-0 rounded-lg">
         <Calendar
           mode="single"
           selected={date}
