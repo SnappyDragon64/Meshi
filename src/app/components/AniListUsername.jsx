@@ -8,17 +8,13 @@ const AniListUsername = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-
-    if (storedUsername) {
-      setUsername(storedUsername);
+    if (username) {
       setSubmitted(true);
     }
   }, []);
 
   const handleSubmit = (name) => {
     setUsername(name);
-    localStorage.setItem("username", name);
     setRefresh(true);
     setSubmitted(true);
   };

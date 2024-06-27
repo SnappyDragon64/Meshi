@@ -9,39 +9,39 @@ import {toDate, toDateJson} from "@/util/Utils.js";
 
 const Calculator = () => {
   const [wave, setWave] = useState(() => {
-    const savedWave = localStorage.getItem('wave');
+    const savedWave = localStorage.getItem("wave");
     return savedWave ? JSON.parse(savedWave) : 0;
   });
 
   const [language, setLanguage] = useState(() => {
-    const savedLanguage = localStorage.getItem('language');
+    const savedLanguage = localStorage.getItem("language");
     return savedLanguage ? savedLanguage : "english";
   });
 
   const [date, setDate] = useState(() => {
-    const savedDate = localStorage.getItem('date');
+    const savedDate = localStorage.getItem("date");
     return savedDate && savedDate !== "null" ? toDate(JSON.parse(savedDate)) : null;
   });
 
   const [animeList, setAnimeList] = useState(() => {
-    const savedAnimeList = localStorage.getItem('animeList');
+    const savedAnimeList = localStorage.getItem("animeList");
     return savedAnimeList ? JSON.parse(savedAnimeList) : [null, null, null];
   });
 
   useEffect(() => {
-    localStorage.setItem('wave', JSON.stringify(wave));
+    localStorage.setItem("wave", JSON.stringify(wave));
   }, [wave]);
 
   useEffect(() => {
-    localStorage.setItem('language', language);
+    localStorage.setItem("language", language);
   }, [language]);
 
   useEffect(() => {
-    localStorage.setItem('date', date ? JSON.stringify(toDateJson(date)) : null);
+    localStorage.setItem("date", date ? JSON.stringify(toDateJson(date)) : null);
   }, [date]);
 
   useEffect(() => {
-    localStorage.setItem('animeList', JSON.stringify(animeList));
+    localStorage.setItem("animeList", JSON.stringify(animeList));
   }, [animeList]);
 
   const addNewItem = () => {
