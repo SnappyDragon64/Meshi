@@ -3,6 +3,7 @@ import EnemyInfoAccordion from "@/components/info/EnemyInfoAccordion.jsx";
 import CalculatorContainer from "@/components/calculator/CalculatorContainer.jsx";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import {useContext} from "react";
+import WaveInfoAccordion from "@/components/info/WaveInfoAccordion.jsx";
 
 const Main = () => {
   const {challenge} = useContext(ChallengeContext);
@@ -15,6 +16,7 @@ const Main = () => {
             A calculator for AWC&apos;s {challenge.name}.
           </p>
           <EnemyInfoAccordion/>
+          <WaveInfoAccordion/>
           <CalculatorContainer/>
         </div>
       </MaxWidthWrapper>
