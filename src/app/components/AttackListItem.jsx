@@ -1,5 +1,5 @@
 import {ChevronDown, ChevronUp, XCircle} from "lucide-react";
-import {Button} from "@/components/Button.jsx";
+import {Button} from "@/components/shadcn/Button.jsx";
 import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 import {cn} from "@/util/Utils.js";
 import * as React from "react";

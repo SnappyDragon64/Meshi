@@ -1,4 +1,4 @@
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/Select";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/shadcn/Select";
 
 
 const SelectLanguage = ({selectedLanguage, onLanguageChange}) => {

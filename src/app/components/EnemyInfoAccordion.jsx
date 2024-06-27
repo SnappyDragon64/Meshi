@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/Accordion.jsx";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/shadcn/Accordion.jsx";
 import EnemyInfo from "./EnemyInfo.jsx";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 

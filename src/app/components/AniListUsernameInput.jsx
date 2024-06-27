@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Button} from "@/components/Button.jsx";
+import {Button} from "@/components/shadcn/Button.jsx";
 import {LogIn} from "lucide-react";
 import {cn} from "@/util/Utils.js";
 

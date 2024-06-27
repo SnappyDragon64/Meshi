@@ -5,9 +5,9 @@ import {format} from "date-fns"
 import {Calendar as CalendarIcon} from "lucide-react"
 
 import {cn} from "@/util/Utils"
-import {Button} from "@/components/Button"
-import {Calendar} from "@/components/Calendar"
-import {Popover, PopoverContent, PopoverTrigger,} from "@/components/Popover"
+import {Button} from "@/components/shadcn/Button"
+import {Calendar} from "@/components/shadcn/Calendar"
+import {Popover, PopoverContent, PopoverTrigger,} from "@/components/shadcn/Popover"
 
 export function DatePicker({date, setDate}) {
   return (

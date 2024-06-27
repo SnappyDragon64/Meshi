@@ -1,5 +1,5 @@
 import SelectWave from "@/components/SelectWave.jsx";
-import {Button} from "@/components/Button.jsx";
+import {Button} from "@/components/shadcn/Button.jsx";
 import AttackList from "@/components/AttackList.jsx";
 import SelectLanguage from "@/components/SelectLanguage.jsx";
 import {useContext, useEffect, useState} from "react";
