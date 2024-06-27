@@ -4,19 +4,19 @@ import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 
 import { cn } from "@/util/Utils.js"
-import { Button } from "@/components/Button"
+import { Button } from "@/components/shadcn/Button"
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "@/components/Command.jsx"
+} from "@/components/shadcn/Command.jsx"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/Popover.jsx"
+} from "@/components/shadcn/Popover.jsx"
 import {CommandList} from "cmdk";
 
 export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, date, language}) {
