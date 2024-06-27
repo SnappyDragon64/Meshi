@@ -1,5 +1,5 @@
-import {Button} from "@/components/Button.jsx";
 import {Pencil, RotateCw} from "lucide-react";
+import {Button} from "@/components/Button.jsx";
 
 const AniListUsernameDisplay = ({username, onEdit, onRefresh}) => {
   return (

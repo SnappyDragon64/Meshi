@@ -54,7 +54,7 @@ const ReorderableListItem = ({animeList, setAnimeList, index, date, language}) =
 
   return (
     <div className="grow flex bg-theme-color-primary rounded-lg overflow-hidden">
-      <div className="w-[100px] h-[137px] grid bg-theme-color-tertiary">
+      <div className="min-w-[100px] min-h-[137px] grid bg-theme-color-tertiary">
         <div className="col-start-1 row-start-1 z-20">
           <div className="h-full flex flex-col items-center justify-center">
             <div className="w-full gap-2 py-1 bg-theme-color-primary bg-opacity-80">
