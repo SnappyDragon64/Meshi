@@ -3,6 +3,7 @@ function formatEntry(entry) {
     media: {
       id,
       title: {english, romaji},
+      format,
       episodes,
       duration,
       genres,
@@ -16,6 +17,7 @@ function formatEntry(entry) {
     id: id,
     englishName: english || romaji,
     romajiName: romaji,
+    format: format,
     episodes: episodes,
     duration: duration,
     genres: genres,
