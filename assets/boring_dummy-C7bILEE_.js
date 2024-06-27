@@ -1,0 +1,1 @@
+const e="Boring Dummy",a=36,s=[{text:"Format “TV” x1.25",multiplier:1.25,conditions:[{type:"equals",attribute:"format",value:"TV"}]}],t=[],n="./assets/enemy/boring_dummy.png",m={name:e,hp:36,weaknesses:s,resistances:t,image:n};export{m as default,a as hp,n as image,e as name,t as resistances,s as weaknesses};
