@@ -1,7 +1,7 @@
 import {getRegistry} from "@/registry/Registries.js";
 
 export async function loadData() {
-  const files = import.meta.glob("/src/resources/data/*/*.json");
+  const files = import.meta.glob("/src/data/*/*.json");
 
   for (const file in files) {
     const split = file.split("/");

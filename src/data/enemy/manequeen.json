@@ -27,5 +27,5 @@
       ]
     }
   ],
-  "image": "src/resources/assets/enemy/manequeen.png"
+  "image": "./assets/enemy/manequeen.png"
 }

@@ -15,5 +15,5 @@
     }
   ],
   "resistances": [],
-  "image": "src/resources/assets/enemy/boring_dummy.png"
+  "image": "./assets/enemy/boring_dummy.png"
 }
