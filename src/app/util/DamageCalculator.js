@@ -43,7 +43,7 @@ function applyMultipliers(damage, attack, conditionalMultipliers) {
   return damage;
 }
 
-function calculateDamage(wave, attacks) {
+export function calculateDamage(wave, attacks) {
   const damageSustained = new Array(wave.length).fill(0);
   const damageDealt = [];
   const attackTargets = [];
@@ -76,5 +76,3 @@ function calculateDamage(wave, attacks) {
 
   return [damageDealt, attackTargets, attackTargetHPList]
 }
-
-export default calculateDamage

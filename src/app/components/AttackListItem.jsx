@@ -4,7 +4,7 @@ import {AnimeCombobox} from "@/components/AnimeCombobox.jsx";
 import {cn} from "@/util/Utils.js";
 import * as React from "react";
 
-const ReorderableListItem = ({animeList, setAnimeList, index, date, language, results}) => {
+const AttackListItem = ({animeList, setAnimeList, index, date, language, results}) => {
   const getAnime = () => {
     return animeList[index];
   }
@@ -102,4 +102,4 @@ const ReorderableListItem = ({animeList, setAnimeList, index, date, language, re
   );
 };
 
-export default ReorderableListItem;
+export default AttackListItem;

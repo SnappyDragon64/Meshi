@@ -1,12 +1,12 @@
 import SelectWave from "@/components/SelectWave.jsx";
 import {Button} from "@/components/Button.jsx";
-import ReorderableList from "@/components/ReorderableList.jsx";
+import AttackList from "@/components/AttackList.jsx";
 import SelectLanguage from "@/components/SelectLanguage.jsx";
 import {useContext, useEffect, useState} from "react";
 import {DatePicker} from "@/components/DatePicker.jsx";
 import {CirclePlus} from "lucide-react";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
-import calculateDamage from "@/util/DamageCalculator.js";
+import {calculateDamage} from "@/util/DamageCalculator.js";
 import {getWaveInfo, toDate, toDateJson} from "@/util/DataConverter.js";
 
 const Calculator = () => {
@@ -88,7 +88,7 @@ const Calculator = () => {
         <Button>Copy</Button>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <ReorderableList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language} results={results}/>
+        <AttackList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language} results={results}/>
         <Button variant="link" size="icon" onClick={addNewItem} className="h-6 w-6">
           <CirclePlus className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
         </Button>
