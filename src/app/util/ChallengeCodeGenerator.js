@@ -17,7 +17,7 @@ export function generateChallengeCode(challengeName, wave, challengeStartDate, a
     "",
     `Wave: ${getNumberWithOrdinal(wave + 1)}`,
     "",
-    `Challenge Start Date: ${formatDate(challengeStartDate)}`,
+    `Challenge Start Date: ${challengeStartDate ? formatDate(challengeStartDate): "YYYY-MM-DD"}`,
     `Challenge Finish Date: ${formatDate(new Date())}`,
     "Legend: [X] = Completed [O] = Not Completed",
     "",
