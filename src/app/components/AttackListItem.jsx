@@ -93,7 +93,7 @@ const AttackListItem = ({searchResults, animeList, setAnimeList, index, date, la
           ) :
           (
             <div className="flex my-auto">
-              <p className="grow text-theme-text-color text-center my-auto">All enemies defeated!</p>
+              <p className="grow text-theme-text-color text-center my-auto">...</p>
             </div>
           )
         }

@@ -35,7 +35,13 @@ const Calculator = () => {
 
   const [results, setResults] = useState(() => {
     const savedResults = localStorage.getItem("results");
-    return savedResults ? JSON.parse(savedResults) : {};
+    return savedResults ? JSON.parse(savedResults) : {
+      damageDealt: [],
+      attackTargets: [],
+      attackTargetHPList: [],
+      enemyNames: [],
+      enemyMaxHPList: [],
+    };
   });
 
   useEffect(() => {
