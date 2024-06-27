@@ -8,6 +8,7 @@ import {CirclePlus} from "lucide-react";
 import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import {calculateDamage} from "@/util/DamageCalculator.js";
 import {getWaveInfo, toDate, toDateJson} from "@/util/DataConverter.js";
+import {generateChallengeCode} from "@/util/ChallengeCodeGenerator.js";
 
 const Calculator = () => {
   const {challenge} = useContext(ChallengeContext);
@@ -35,7 +36,7 @@ const Calculator = () => {
   const [results, setResults] = useState(() => {
     const savedResults = localStorage.getItem("results");
     return savedResults ? JSON.parse(savedResults) : {};
-  })
+  });
 
   useEffect(() => {
     localStorage.setItem("wave", JSON.stringify(wave));
@@ -75,7 +76,15 @@ const Calculator = () => {
   const addNewItem = () => {
     const list = [...animeList, null];
     setAnimeList(list);
-  }
+  };
+
+  const generateAndCopyText = () => {
+    const challengeCode = generateChallengeCode(challenge.name, wave, date, animeList, results);
+
+    navigator.clipboard.writeText(challengeCode).then(() => {
+      alert("Challenge code copied:\n" + challengeCode)
+    });
+  };
 
   return (
     <div className="grow flex flex-col pt-6 gap-6">
@@ -85,7 +94,7 @@ const Calculator = () => {
           <SelectLanguage selectedLanguage={language} onLanguageChange={setLanguage} className="grow"/>
           <DatePicker date={date} setDate={setDate}/>
         </div>
-        <Button>Copy</Button>
+        <Button onClick={generateAndCopyText}>Copy</Button>
       </div>
       <div className="flex flex-col items-center gap-4">
         <AttackList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language} results={results}/>

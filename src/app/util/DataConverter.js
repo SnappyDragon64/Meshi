@@ -30,15 +30,20 @@ export function formatEntries(entries) {
 }
 
 export function formatDate(date) {
-  const year = date.year;
-  const month = String(date.month).padStart(2, "0");
-  const day = String(date.day).padStart(2, "0");
+  const dateJson = toDateJson(date);
+  return formatDateJson(dateJson);
+}
+
+export function formatDateJson(dateJson) {
+  const year = dateJson.year;
+  const month = String(dateJson.month).padStart(2, "0");
+  const day = String(dateJson.day).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }
 
-export function toDate(date) {
-  return new Date(date.year, date.month - 1, date.day);
+export function toDate(dateJson) {
+  return new Date(dateJson.year, dateJson.month - 1, dateJson.day);
 }
 
 export function toDateJson(date) {
@@ -69,4 +74,10 @@ export function getWaveInfo(wave) {
   }
 
   return [enemyNames, enemyMaxHPList];
+}
+
+export function getNumberWithOrdinal(n) {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
