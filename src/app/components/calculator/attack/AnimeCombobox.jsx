@@ -16,6 +16,7 @@ import {
   PopoverTrigger,
 } from "@/components/shadcn/Popover.jsx"
 import {CommandList} from "cmdk";
+import {ScrollArea} from "@/components/shadcn/ScrollArea.jsx";
 
 export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, date, language}) {
   const [open, setOpen] = React.useState(false)
@@ -39,31 +40,33 @@ export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, date, 
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
+      <PopoverContent className="lg:w-full p-0">
         <Command>
           <CommandInput placeholder="Search anime" />
           <CommandList>
             <CommandEmpty>No anime found.</CommandEmpty>
-            <CommandGroup>
-              {searchResults.map((result, index) => (
-                <CommandItem
-                  key={index}
-                  value={result}
-                  onSelect={() => {
-                    setItemAnime(result);
-                    setOpen(false);
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      getItemAnime() === result ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {result[getKey()]}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+            <ScrollArea viewPortClassName="max-h-[300px] pr-2">
+              <CommandGroup>
+                {searchResults.map((result, index) => (
+                  <CommandItem
+                    key={index}
+                    value={result}
+                    onSelect={() => {
+                      setItemAnime(result);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        getItemAnime() === result ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                    {result[getKey()]}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </ScrollArea>
           </CommandList>
         </Command>
       </PopoverContent>
