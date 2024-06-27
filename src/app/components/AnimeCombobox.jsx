@@ -18,20 +18,9 @@ import {
   PopoverTrigger,
 } from "@/components/Popover.jsx"
 import {CommandList} from "cmdk";
-import {useEffect, useState} from "react";
-import {getAnime} from "@/services/IndexedDB.js";
 
-export function AnimeCombobox({getItemAnime, setItemAnime, date, language}) {
-  const [results, setResults] = useState([]);
+export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, date, language}) {
   const [open, setOpen] = React.useState(false)
-
-  useEffect(() => {
-    getAnime(language, date)
-      .then((res) => {
-        setResults(res);
-      })
-      .catch((err) => console.error(err));
-  }, [date, language]);
 
   const getKey = () => {
     return language + "Name";
@@ -58,7 +47,7 @@ export function AnimeCombobox({getItemAnime, setItemAnime, date, language}) {
           <CommandList>
             <CommandEmpty>No anime found.</CommandEmpty>
             <CommandGroup>
-              {results.map((result, index) => (
+              {searchResults.map((result, index) => (
                 <CommandItem
                   key={index}
                   value={result}
