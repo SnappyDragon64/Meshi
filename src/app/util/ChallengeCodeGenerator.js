@@ -15,14 +15,14 @@ export function generateChallengeCode(challengeName, wave, challengeStartDate, a
     "",
     `Wave: ${getNumberWithOrdinal(wave + 1)}`,
     "",
-    `Challenge Start Date: ${challengeStartDate ? formatDate(challengeStartDate): "YYYY-MM-DD"}`,
+    `Challenge Start Date: ${challengeStartDate ? formatDate(challengeStartDate) : "YYYY-MM-DD"}`,
     `Challenge Finish Date: ${formatDate(new Date())}`,
     "Legend: [X] = Completed [O] = Not Completed",
     "",
     "<hr>",
   ];
 
-  for (let index = 0; index < animeList.length; index++){
+  for (let index = 0; index < animeList.length; index++) {
     const anime = animeList[index];
     const damageDealt = results.damageDealt[index];
     const attackTarget = results.attackTargets[index];

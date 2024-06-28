@@ -1,10 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
-import { getChallenge } from "@/registry/Challenges.js";
+import {createContext, useEffect, useState} from 'react';
+import {getChallenge} from "@/registry/Challenges.js";
 import Spinner from "@/components/misc/Spinner.jsx";
 
 export const ChallengeContext = createContext();
 
-export const ChallengeProvider = ({ children }) => {
+export const ChallengeProvider = ({children}) => {
   const [challenge, setChallenge] = useState({
     name: "",
     enemies: [],
@@ -26,7 +26,7 @@ export const ChallengeProvider = ({ children }) => {
   }
 
   return (
-    <ChallengeContext.Provider value={{ challenge, setChallenge }}>
+    <ChallengeContext.Provider value={{challenge, setChallenge}}>
       {children}
     </ChallengeContext.Provider>
   );

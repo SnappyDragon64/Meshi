@@ -101,7 +101,8 @@ const Calculator = () => {
         <Button onClick={generateAndCopyText}>Copy</Button>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <AttackList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language} results={results}/>
+        <AttackList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language}
+                    results={results}/>
         <Button variant="link" size="icon" onClick={addNewItem} className="h-6 w-6">
           <CirclePlus className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
         </Button>

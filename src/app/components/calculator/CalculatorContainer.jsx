@@ -45,7 +45,8 @@ function CalculatorContainer() {
   }, [refresh, setRefresh, username]);
 
   const content = {
-    [Status.DEFAULT]: <p className="text-theme-text-color text-center my-auto">Enter your AniList username to get started</p>,
+    [Status.DEFAULT]: <p className="text-theme-text-color text-center my-auto">Enter your AniList username to get
+      started</p>,
     [Status.LOADING]: <Spinner/>,
     [Status.SUCCESS]: <Calculator/>,
     [Status.ERROR]: <p className="text-theme-text-color text-center my-auto">Error fetching data from AniList</p>,

@@ -18,7 +18,8 @@ const AttackList = ({animeList, setAnimeList, date, language, results}) => {
       {
         animeList.map((val, index) => {
           return (
-            <AttackListItem key={index} searchResults={searchResults} animeList={animeList} setAnimeList={setAnimeList} index={index} date={date} language={language} results={results}/>
+            <AttackListItem key={index} searchResults={searchResults} animeList={animeList} setAnimeList={setAnimeList}
+                            index={index} date={date} language={language} results={results}/>
           )
         })
       }

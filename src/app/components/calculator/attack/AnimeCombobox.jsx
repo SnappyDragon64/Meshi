@@ -1,20 +1,10 @@
 import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
+import {Check, ChevronsUpDown} from "lucide-react"
 
-import { cn } from "@/util/Utils.js"
-import { Button } from "@/components/shadcn/Button.jsx"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/shadcn/Command.jsx"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/shadcn/Popover.jsx"
+import {cn} from "@/util/Utils.js"
+import {Button} from "@/components/shadcn/Button.jsx"
+import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem,} from "@/components/shadcn/Command.jsx"
+import {Popover, PopoverContent, PopoverTrigger,} from "@/components/shadcn/Popover.jsx"
 import {CommandList} from "cmdk";
 import {ScrollArea} from "@/components/shadcn/ScrollArea.jsx";
 
@@ -36,12 +26,12 @@ export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, date, 
           {getItemAnime()
             ? getItemAnime()[getKey()]
             : "Select anime"}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="lg:w-full p-0">
         <Command>
-          <CommandInput placeholder="Search anime" />
+          <CommandInput placeholder="Search anime"/>
           <CommandList>
             <CommandEmpty>No anime found.</CommandEmpty>
             <ScrollArea viewPortClassName="max-h-[300px] pr-2">

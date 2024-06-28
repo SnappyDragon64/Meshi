@@ -59,10 +59,12 @@ const AttackListItem = ({searchResults, animeList, setAnimeList, index, date, la
             <div className="w-full gap-2 py-1 bg-theme-color-primary bg-opacity-80">
               <p className="text-6xl text-theme-text-color-highlight text-center">{index + 1}</p>
               <div className="flex gap-2 justify-center">
-                <Button variant="link" size="icon" onClick={onMoveUp} disabled={moveUpDisabled()} className={cn("h-6 w-6", moveUpDisabled() ? "cursor-not-allowed opacity-10" : "")}>
+                <Button variant="link" size="icon" onClick={onMoveUp} disabled={moveUpDisabled()}
+                        className={cn("h-6 w-6", moveUpDisabled() ? "cursor-not-allowed opacity-10" : "")}>
                   <ChevronUp className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
                 </Button>
-                <Button variant="link" size="icon" onClick={onMoveDown}  disabled={moveDownDisabled()} className={cn("h-6 w-6", moveDownDisabled() ? "cursor-not-allowed opacity-10" : "")}>
+                <Button variant="link" size="icon" onClick={onMoveDown} disabled={moveDownDisabled()}
+                        className={cn("h-6 w-6", moveDownDisabled() ? "cursor-not-allowed opacity-10" : "")}>
                   <ChevronDown className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
                 </Button>
               </div>
@@ -75,12 +77,13 @@ const AttackListItem = ({searchResults, animeList, setAnimeList, index, date, la
       </div>
       <div className="p-2 grow flex flex-col gap-2">
         <div className="flex gap-2">
-          <AnimeCombobox  searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime} date={date} language={language}/>
+          <AnimeCombobox searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime} date={date}
+                         language={language}/>
           <Button variant="link" size="icon" onClick={deleteItem} className="h-6 w-6">
             <XCircle className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
           </Button>
         </div>
-        { damageDealt ?
+        {damageDealt ?
           (
             <div className="grow flex flex-col md:flex-row">
               <div className="grow my-auto">

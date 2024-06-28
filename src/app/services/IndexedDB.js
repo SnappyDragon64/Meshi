@@ -9,9 +9,9 @@ export async function initIndexedDB() {
     request.onupgradeneeded = (e) => {
       db = e.target.result;
 
-      const animeStore = db.createObjectStore("anime", { keyPath: "id" });
-      animeStore.createIndex("byEnglishName", "englishName", { unique: true });
-      animeStore.createIndex("byRomajiName", "romajiName", { unique: true });
+      const animeStore = db.createObjectStore("anime", {keyPath: "id"});
+      animeStore.createIndex("byEnglishName", "englishName", {unique: true});
+      animeStore.createIndex("byRomajiName", "romajiName", {unique: true});
     };
 
     request.onsuccess = (e) => {
@@ -86,6 +86,7 @@ export async function storeEntries(entries) {
     };
   });
 }
+
 export function getAnime(language = "english", challengeStartDate = null) {
   return new Promise((resolve, reject) => {
     if (!db) {
