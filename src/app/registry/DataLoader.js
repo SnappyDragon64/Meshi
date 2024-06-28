@@ -12,8 +12,6 @@ export async function loadData() {
     const registry = getRegistry(dir);
     const obj = (await files[file]()).default;
 
-    console.log(dir, id, obj);
-
     registry.register(id, obj);
   }
 }

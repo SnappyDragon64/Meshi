@@ -34,9 +34,15 @@ function CalculatorContainer() {
         .then(result => {
           if (result.success) {
             const data = result.data;
-            const entries = data.MediaListCollection.lists[0].entries;
-            const convertedEntries = formatEntries(entries);
-            storeEntries(convertedEntries).then(() => setStatus(Status.SUCCESS));
+            console.log(data)
+            const lists = data.MediaListCollection.lists;
+
+            const entries = lists.flatMap((list, index) => {
+              const status = ["completed", "planning", "watching"][index];
+              return formatEntries(list.entries, status);
+            });
+
+            storeEntries(entries).then(() => setStatus(Status.SUCCESS));
           } else {
             setStatus(Status.ERROR);
           }

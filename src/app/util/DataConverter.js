@@ -1,4 +1,4 @@
-function formatEntry(entry) {
+function formatEntry(entry, status) {
   const {
     media: {
       id,
@@ -24,11 +24,12 @@ function formatEntry(entry) {
     startedAt: startedAt,
     completedAt: completedAt,
     imageUrl: medium,
+    status: status,
   }
 }
 
-export function formatEntries(entries) {
-  return entries.map(entry => formatEntry(entry))
+export function formatEntries(entries, status) {
+  return entries.map(entry => formatEntry(entry, status))
 }
 
 export function formatDate(date) {
