@@ -1,12 +1,12 @@
 import AttackListItem from "@/components/calculator/attack/AttackListItem.jsx";
 import {useEffect, useState} from "react";
-import {getAnime} from "@/services/IndexedDB.js";
+import {getEligibleAnime} from "@/services/IndexedDB.js";
 
 const AttackList = ({animeList, setAnimeList, date, language, results}) => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    getAnime(language, date)
+    getEligibleAnime(language, date)
       .then((res) => {
         setSearchResults(res);
       })

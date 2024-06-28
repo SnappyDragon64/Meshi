@@ -87,7 +87,7 @@ export async function storeEntries(entries) {
   });
 }
 
-export function getAnime(language = "english", challengeStartDate = null) {
+export function getEligibleAnime(language = "english", challengeStartDate = null) {
   return new Promise((resolve, reject) => {
     if (!db) {
       reject("IndexedDB is not initialized");
@@ -106,8 +106,10 @@ export function getAnime(language = "english", challengeStartDate = null) {
       if (cursor) {
         const anime = cursor.value;
 
-        if (!challengeStartDate || toDate(anime.startedAt) >= challengeStartDate) {
-          result.push(anime);
+        if (anime.duration >= 10) {
+          if (anime.status === "planning" || (!challengeStartDate || toDate(anime.startedAt) >= challengeStartDate)) {
+            result.push(anime);
+          }
         }
 
         cursor.continue();
