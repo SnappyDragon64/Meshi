@@ -38,9 +38,9 @@ export function formatDate(date) {
 }
 
 export function formatDateJson(dateJson) {
-  const year = dateJson.year;
-  const month = String(dateJson.month).padStart(2, "0");
-  const day = String(dateJson.day).padStart(2, "0");
+  const year = dateJson.year || "YYYY";
+  const month = String(dateJson.month || "MM").padStart(2, "0");
+  const day = String(dateJson.day || "DD").padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }
