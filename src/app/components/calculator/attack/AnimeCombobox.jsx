@@ -8,7 +8,7 @@ import {Popover, PopoverContent, PopoverTrigger,} from "@/components/shadcn/Popo
 import {CommandList} from "cmdk";
 import {ScrollArea} from "@/components/shadcn/ScrollArea.jsx";
 
-export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, date, language}) {
+export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, language}) {
   const [open, setOpen] = React.useState(false)
 
   const getKey = () => {

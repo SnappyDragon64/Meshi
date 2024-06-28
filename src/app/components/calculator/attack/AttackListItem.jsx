@@ -4,7 +4,7 @@ import {AnimeCombobox} from "@/components/calculator/attack/AnimeCombobox.jsx";
 import {cn} from "@/util/Utils.js";
 import * as React from "react";
 
-const AttackListItem = ({searchResults, animeList, setAnimeList, index, date, language, results}) => {
+const AttackListItem = ({searchResults, animeList, setAnimeList, index, language, results}) => {
   const getAnime = () => {
     return animeList[index];
   }
@@ -77,7 +77,7 @@ const AttackListItem = ({searchResults, animeList, setAnimeList, index, date, la
       </div>
       <div className="p-2 grow flex flex-col gap-2">
         <div className="flex gap-2">
-          <AnimeCombobox searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime} date={date}
+          <AnimeCombobox searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime}
                          language={language}/>
           <Button variant="link" size="icon" onClick={deleteItem} className="h-6 w-6">
             <XCircle className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
