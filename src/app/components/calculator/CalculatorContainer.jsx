@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "@/context/UserContext.jsx";
-import {fetchList} from "@/services/AniListClient.js";
+import {fetchList, MediaListStatus} from "@/services/AniListClient.js";
 import {formatEntries} from "@/util/DataConverter.js";
 import {storeEntries} from "@/services/IndexedDB.js";
 import Spinner from "@/components/misc/Spinner.jsx";
@@ -30,23 +30,32 @@ function CalculatorContainer() {
       setRefresh(false);
       setStatus(Status.LOADING);
 
-      fetchList(username)
-        .then(result => {
+      const listPromises = [];
+      const mediaListStatuses = Object.values(MediaListStatus);
+      for (const mediaListStatus of mediaListStatuses) {
+        listPromises.push(fetchList(username, mediaListStatus));
+      }
+
+      Promise.all(listPromises).then(async (results) => {
+        let entries = [];
+
+        await results.forEach((result, index) => {
           if (result.success) {
             const data = result.data;
-            console.log(data)
             const lists = data.MediaListCollection.lists;
 
-            const entries = lists.flatMap((list, index) => {
-              const status = ["completed", "planning", "watching"][index];
-              return formatEntries(list.entries, status);
-            });
-
-            storeEntries(entries).then(() => setStatus(Status.SUCCESS));
+            if (lists.length) {
+              const rawEntries = lists[0].entries;
+              const formattedEntries = formatEntries(rawEntries, mediaListStatuses[index]);
+              entries = [...entries, ...formattedEntries];
+            }
           } else {
             setStatus(Status.ERROR);
           }
         });
+
+        storeEntries(entries).then(() => setStatus(Status.SUCCESS));
+      });
     }
   }, [refresh, setRefresh, username]);
 

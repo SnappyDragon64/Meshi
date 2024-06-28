@@ -1,4 +1,5 @@
 import {toDate} from "@/util/DataConverter.js";
+import {MediaListStatus} from "@/services/AniListClient.js";
 
 let db;
 
@@ -28,14 +29,14 @@ export async function initIndexedDB() {
 }
 
 export async function storeEntries(entries) {
-  if (!db) {
-    console.error("IndexedDB is not initialized");
-    return;
-  }
-
-  db.close();
-
   return new Promise((resolve, reject) => {
+    if (!db) {
+      console.error("IndexedDB is not initialized");
+      reject();
+    }
+
+    db.close();
+
     const request = indexedDB.open("ListDB", 1);
 
     request.onsuccess = (e) => {
@@ -106,9 +107,16 @@ export function getEligibleAnime(language = "english", challengeStartDate = null
       if (cursor) {
         const anime = cursor.value;
 
-        if (anime.duration >= 10) {
-          if (anime.status === "planning" || (!challengeStartDate || toDate(anime.startedAt) >= challengeStartDate)) {
-            result.push(anime);
+        // Assumption that a user will not want to use a dropped anime for a challenge
+        // Challenge does not allow anime to be re-watched
+        if (!(anime.status === MediaListStatus.DROPPED || anime.status === MediaListStatus.REPEATING)) {
+          // Minimum episode duration must be 10 minutes
+          if (anime.duration >= 10) {
+            // Planned anime are eligible
+            // Completed anime are eligible if they were started after the challenge start date
+            if (anime.status === MediaListStatus.PLANNING || (!challengeStartDate || toDate(anime.startedAt) >= challengeStartDate)) {
+              result.push(anime);
+            }
           }
         }
 

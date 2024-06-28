@@ -37,10 +37,10 @@ async function postAniListQuery(query, variables) {
   }
 }
 
-export async function fetchList(username) {
+export async function fetchList(username, status) {
   const query = `
-            query ($username: String, $type: MediaType, $forceSingleCompletedList: Boolean) {
-              MediaListCollection(userName: $username, type: $type, forceSingleCompletedList: $forceSingleCompletedList) {
+            query ($username: String, $type: MediaType, $status: MediaListStatus, $forceSingleCompletedList: Boolean) {
+              MediaListCollection(userName: $username, type: $type, status: $status, forceSingleCompletedList: $forceSingleCompletedList) {
                 lists {
                   entries {
                     media {
@@ -76,8 +76,18 @@ export async function fetchList(username) {
   const variables = {
     username: username,
     type: "ANIME",
+    status: status,
     forceSingleCompletedList: true,
   };
 
   return await postAniListQuery(query, variables);
 }
+
+export const MediaListStatus = {
+  CURRENT: "CURRENT",
+  PLANNING: "PLANNING",
+  COMPLETED: "COMPLETED",
+  DROPPED: "DROPPED",
+  PAUSED: "PAUSED",
+  REPEATING: "REPEATING",
+};
