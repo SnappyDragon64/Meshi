@@ -66,7 +66,7 @@ const Calculator = () => {
 
   useEffect(() => {
     const waveObj = challenge.waves[wave];
-    const [damageDealt, attackTargets, attackTargetHPList] = calculateDamage(waveObj, animeList);
+    const [damageDealt, attackTargets, attackTargetHPList, waveCleared] = calculateDamage(waveObj, animeList);
     const [enemyNames, enemyMaxHPList] = getWaveInfo(waveObj);
     setResults({
       damageDealt: damageDealt,
@@ -74,6 +74,7 @@ const Calculator = () => {
       attackTargetHPList: attackTargetHPList,
       enemyNames: enemyNames,
       enemyMaxHPList: enemyMaxHPList,
+      waveCleared: waveCleared,
     })
   }, [animeList, wave, challenge.waves]);
 

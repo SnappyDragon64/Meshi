@@ -1,4 +1,4 @@
-import {formatDate, formatDateJson, getNumberWithOrdinal} from "@/util/DataConverter.js";
+import {formatDate, formatDateJson, getNumberWithOrdinal, toDate} from "@/util/DataConverter.js";
 
 function generateAttack(index, anime, damageDealt, attackTarget, enemyName, enemyRemainingHP, enemyMaxHP) {
   return [
@@ -16,11 +16,13 @@ export function generateChallengeCode(challengeName, wave, challengeStartDate, a
     `Wave: ${getNumberWithOrdinal(wave + 1)}`,
     "",
     `Challenge Start Date: ${challengeStartDate ? formatDate(challengeStartDate) : "YYYY-MM-DD"}`,
-    `Challenge Finish Date: ${formatDate(new Date())}`,
+    "Challenge Finish Date: ",
     "Legend: [X] = Completed [O] = Not Completed",
     "",
     "<hr>",
   ];
+
+  let completedDate;
 
   for (let index = 0; index < animeList.length; index++) {
     const anime = animeList[index];
@@ -30,9 +32,28 @@ export function generateChallengeCode(challengeName, wave, challengeStartDate, a
     const enemyName = results.enemyNames[attackTarget];
     const enemyMaxHP = results.enemyMaxHPList[attackTarget];
 
+    if (!completedDate) {
+      completedDate = toDate(anime.completedAt);
+    } else {
+      const animeDate = toDate(anime.completedAt);
+
+      if (animeDate > completedDate) {
+        completedDate = animeDate;
+      }
+    }
+
     const attack = generateAttack(index + 1, anime, damageDealt, attackTarget, enemyName, enemyRemainingHP, enemyMaxHP);
     text.push(...attack);
   }
+
+  const finishDateIndex = text.indexOf("Challenge Finish Date: ");
+  let toAppend = "YYYY-MM-DD";
+
+  if (results.waveCleared && completedDate) {
+    toAppend = formatDate(completedDate);
+  }
+
+  text[finishDateIndex] += toAppend;
 
   return text.join("\n");
 }

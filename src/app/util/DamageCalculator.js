@@ -49,6 +49,7 @@ export function calculateDamage(wave, attacks) {
   const attackTargets = [];
   const attackTargetHPList = [];
   let currentIndex = 0;
+  let waveCleared = false;
 
   for (const attack of attacks) {
     attackTargets.push(currentIndex);
@@ -74,6 +75,7 @@ export function calculateDamage(wave, attacks) {
         currentIndex = currentIndex + 1;
 
         if (currentIndex >= wave.length) {
+          waveCleared = true;
           break;
         }
       }
@@ -85,5 +87,5 @@ export function calculateDamage(wave, attacks) {
     }
   }
 
-  return [damageDealt, attackTargets, attackTargetHPList]
+  return [damageDealt, attackTargets, attackTargetHPList, waveCleared]
 }
