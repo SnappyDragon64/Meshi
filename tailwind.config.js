@@ -38,7 +38,7 @@ module.exports = {
       },
       colors: {
         "theme-color-highlight": "#707CFF",
-        "theme-color-header": "#262A54",
+        "theme-color-header": "#2c3160",
         "theme-color-primary": "#242A54",
         "theme-color-secondary": "#17182d",
         "theme-color-tertiary": "#0b0c23",
