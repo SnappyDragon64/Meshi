@@ -7,7 +7,7 @@ function formatEntry(entry, status) {
       episodes,
       duration,
       genres,
-      coverImage: {medium},
+      coverImage: {medium, color},
     },
     startedAt,
     completedAt,
@@ -24,6 +24,7 @@ function formatEntry(entry, status) {
     startedAt: startedAt,
     completedAt: completedAt,
     imageUrl: medium,
+    imageAvgColor: color,
     status: status,
   }
 }

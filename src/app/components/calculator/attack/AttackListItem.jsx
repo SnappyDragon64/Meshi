@@ -1,8 +1,8 @@
-import {ChevronDown, ChevronUp, XCircle} from "lucide-react";
-import {Button} from "@/components/shadcn/Button.jsx";
 import {AnimeCombobox} from "@/components/calculator/attack/AnimeCombobox.jsx";
-import {cn} from "@/util/Utils.js";
-import * as React from "react";
+import AttackTile from "@/components/calculator/attack/AttackTile.jsx";
+import AttackInfo from "@/components/calculator/attack/AttackInfo.jsx";
+import {ChevronDown, Trash, Trash2, Trash2Icon, TrashIcon} from "lucide-react";
+import {Button} from "@/components/shadcn/Button.jsx";
 
 const AttackListItem = ({searchResults, animeList, setAnimeList, index, language, results}) => {
   const getAnime = () => {
@@ -45,61 +45,17 @@ const AttackListItem = ({searchResults, animeList, setAnimeList, index, language
     setAnimeList(list);
   }
 
-  const damageDealt = results.damageDealt[index];
-  const attackTarget = results.attackTargets[index];
-  const enemyRemainingHP = results.attackTargetHPList[index];
-  const enemyName = results.enemyNames[attackTarget];
-  const enemyMaxHP = results.enemyMaxHPList[attackTarget];
-
   return (
-    <div className="grow flex bg-theme-color-primary rounded-lg overflow-hidden">
-      <div className="min-w-[100px] min-h-[150px] w-[100px] h-[150px] grid bg-theme-color-tertiary">
-        <div className="col-start-1 row-start-1 z-20">
-          <div className="h-full flex flex-col items-center justify-center">
-            <div className="w-full gap-2 py-1 bg-theme-color-primary bg-opacity-80">
-              <p className="text-6xl text-theme-text-color-highlight text-center">{index + 1}</p>
-              <div className="flex gap-2 justify-center">
-                <Button variant="link" size="icon" onClick={onMoveUp} disabled={moveUpDisabled()}
-                        className={cn("h-6 w-6", moveUpDisabled() ? "cursor-not-allowed opacity-10" : "")}>
-                  <ChevronUp className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
-                </Button>
-                <Button variant="link" size="icon" onClick={onMoveDown} disabled={moveDownDisabled()}
-                        className={cn("h-6 w-6", moveDownDisabled() ? "cursor-not-allowed opacity-10" : "")}>
-                  <ChevronDown className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-start-1 row-start-1 z-10">
-          {getAnime() && getAnime().imageUrl && <img src={getAnime().imageUrl} className="w-full h-full"/>}
-        </div>
-      </div>
-      <div className="p-2 grow flex flex-col gap-2">
-        <div className="flex gap-2">
-          <AnimeCombobox searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime}
-                         language={language}/>
-          <Button variant="link" size="icon" onClick={deleteItem} className="h-6 w-6">
-            <XCircle className="stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
+    <div className="flex h-36 rounded-lg overflow-hidden group">
+      <AttackTile anime={getAnime()} index={index} onMoveUp={onMoveUp} moveUpDisabled={moveUpDisabled} onMoveDown={onMoveDown} moveDownDisabled={moveDownDisabled}/>
+      <div className="grow relative w-0 bg-theme-color-primary p-2">
+        <AnimeCombobox searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime} language={language}/>
+        <AttackInfo anime={getAnime()} results={results} index={index}/>
+        <div className="transition-opacity opacity-0 group-hover:opacity-100">
+          <Button variant="destructive" size="icon" onClick={deleteItem} className="h-6 w-6 absolute bottom-2 right-2 z-10">
+            <TrashIcon className="h-4 w-4 stroke-theme-text-color hover:stroke-theme-text-color-highlight"/>
           </Button>
         </div>
-        {damageDealt ?
-          (
-            <div className="grow flex flex-col md:flex-row">
-              <div className="grow my-auto">
-                <p className="text-theme-text-color text-center">Damage: {damageDealt}</p>
-              </div>
-              <div className="grow my-auto">
-                <p className="text-theme-text-color text-center">{enemyName}: {enemyRemainingHP}/{enemyMaxHP}</p>
-              </div>
-            </div>
-          ) :
-          (
-            <div className="flex my-auto">
-              <p className="grow text-theme-text-color text-center my-auto">...</p>
-            </div>
-          )
-        }
       </div>
     </div>
   );

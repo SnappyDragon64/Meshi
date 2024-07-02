@@ -99,7 +99,7 @@ const Calculator = () => {
           <SelectLanguage selectedLanguage={language} onLanguageChange={setLanguage} className="grow"/>
           <DatePicker date={date} setDate={setDate}/>
         </div>
-        <Button onClick={generateAndCopyText}>Copy</Button>
+        <Button onClick={generateAndCopyText} className="bg-theme-color-highlight text-theme-text-color-highlight font-bold">Copy</Button>
       </div>
       <div className="flex flex-col items-center gap-4">
         <AttackList animeList={animeList} setAnimeList={setAnimeList} date={date} language={language}

@@ -21,11 +21,9 @@ export function AnimeCombobox({searchResults, getItemAnime, setItemAnime, langua
         <Button
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between bg-theme-color-tertiary"
+          className="h-8 w-full max-w-full justify-between bg-theme-color-tertiary"
         >
-          {getItemAnime()
-            ? getItemAnime()[getKey()]
-            : "Select anime"}
+          <p className="truncate">{getItemAnime() ? getItemAnime()[getKey()] : "Select anime"}</p>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
         </Button>
       </PopoverTrigger>

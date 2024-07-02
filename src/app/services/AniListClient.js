@@ -55,6 +55,7 @@ export async function fetchList(username, status) {
                       genres
                       coverImage {
                         medium
+                        color
                       }
                     }
                     startedAt {
