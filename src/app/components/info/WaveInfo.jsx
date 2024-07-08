@@ -8,20 +8,21 @@ const WaveInfo = ({wave, index}) => {
           className="bg-theme-color-primary w-full h-full"/>
       </div>
       <div className="col-start-1 row-start-1 z-20">
-        <div
-          className="bg-gradient-to-t from-theme-color-tertiary via-theme-color-tertiary via-20% to-transparent opacity-80 w-full h-full"/>
+        <div className="bg-gradient-to-t from-theme-color-tertiary via-theme-color-tertiary via-20% to-transparent opacity-80 w-full h-full"/>
       </div>
       <div className="col-start-1 row-start-1 z-30 flex">
         <div className="bg-theme-color-highlight w-2 h-full"/>
-        <div className="p-4">
-          <p className="text-xl font-bold text-theme-text-color">{getNumberWithOrdinal(index + 1)} wave</p>
-          {
-            wave.map((enemy, index) => {
-              return (
-                <p key={index} className="text-lg text-theme-text-color">&#8226; {enemy.name}</p>
-              );
-            })
-          }
+        <div className="px-4 py-2 flex flex-col gap-1">
+          <p className="font-bold text-theme-text-color text-lg">{getNumberWithOrdinal(index + 1)} wave</p>
+          <ul>
+            {
+              wave.map((enemy, index) => {
+                return (
+                  <li key={index} className="text-theme-text-color text-sm">{enemy.name}</li>
+                );
+              })
+            }
+          </ul>
         </div>
       </div>
     </div>

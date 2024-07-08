@@ -1,7 +1,7 @@
 import {AnimeCombobox} from "@/components/calculator/attack/AnimeCombobox.jsx";
 import AttackTile from "@/components/calculator/attack/AttackTile.jsx";
 import AttackInfo from "@/components/calculator/attack/AttackInfo.jsx";
-import {ChevronDown, Trash, Trash2, Trash2Icon, TrashIcon} from "lucide-react";
+import {TrashIcon} from "lucide-react";
 import {Button} from "@/components/shadcn/Button.jsx";
 
 const AttackListItem = ({searchResults, animeList, setAnimeList, index, language, results}) => {
