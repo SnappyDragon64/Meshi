@@ -37,11 +37,11 @@ module.exports = {
         "spin": "spin 2s linear infinite",
       },
       colors: {
-        "theme-color-highlight": "#605bff",
-        "theme-color-header": "#2c3160",
-        "theme-color-primary": "#242A54",
-        "theme-color-secondary": "#17182d",
-        "theme-color-tertiary": "#0b0c23",
+        "theme-color-highlight": "#6b27f2",
+        "theme-color-header": "#171734",
+        "theme-color-primary": "#16152c",
+        "theme-color-secondary": "#08091a",
+        "theme-color-tertiary": "#0e0f1c",
         "theme-text-color": "#c4c4c4",
         "theme-text-color-highlight": "#ffffff"
       },
