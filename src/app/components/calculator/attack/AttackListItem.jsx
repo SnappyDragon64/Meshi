@@ -48,7 +48,7 @@ const AttackListItem = ({searchResults, animeList, setAnimeList, index, language
   return (
     <div className="flex h-36 rounded-lg overflow-hidden group">
       <AttackTile anime={getAnime()} index={index} onMoveUp={onMoveUp} moveUpDisabled={moveUpDisabled} onMoveDown={onMoveDown} moveDownDisabled={moveDownDisabled}/>
-      <div className="grow relative w-0 bg-theme-color-primary p-2">
+      <div className="grow relative flex flex-col w-0 bg-theme-color-primary p-2">
         <AnimeCombobox searchResults={searchResults} getItemAnime={getAnime} setItemAnime={setAnime} language={language}/>
         <AttackInfo anime={getAnime()} results={results} index={index}/>
         <div className="transition-opacity opacity-0 group-hover:opacity-100">

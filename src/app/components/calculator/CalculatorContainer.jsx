@@ -68,7 +68,7 @@ function CalculatorContainer() {
   };
 
   return (
-    <div className="grow flex flex-col justify-between">
+    <div className="grow flex flex-col justify-between min-h-40">
       {content[status]}
     </div>
   );

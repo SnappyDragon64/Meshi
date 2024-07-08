@@ -50,7 +50,7 @@ const AttackInfo = ({anime, results, index}) => {
       </div>
     ) :
     (
-      <div className="grid">
+      <div className="grow flex items-center">
         <p className="grow text-theme-text-color text-center text-xl">|˶˙ᵕ˙ )ﾉﾞ</p>
       </div>
     )
