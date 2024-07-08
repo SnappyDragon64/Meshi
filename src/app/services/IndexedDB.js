@@ -11,8 +11,6 @@ export async function initIndexedDB() {
       db = e.target.result;
 
       const animeStore = db.createObjectStore("anime", {keyPath: "id"});
-      animeStore.createIndex("byEnglishName", "englishName", {unique: true});
-      animeStore.createIndex("byRomajiName", "romajiName", {unique: true});
     };
 
     request.onsuccess = (e) => {
@@ -88,7 +86,7 @@ export async function storeEntries(entries) {
   });
 }
 
-export function getEligibleAnime(language = "english", challengeStartDate = null) {
+export function getEligibleAnime(challengeStartDate = null) {
   return new Promise((resolve, reject) => {
     if (!db) {
       reject("IndexedDB is not initialized");
@@ -97,11 +95,10 @@ export function getEligibleAnime(language = "english", challengeStartDate = null
 
     const transaction = db.transaction("anime", "readonly");
     const animeStore = transaction.objectStore("anime");
-    const indexName = language === "romaji" ? "byRomajiName" : "byEnglishName"
-    const index = animeStore.index(indexName);
+    const request = animeStore.openCursor();
     const result = [];
 
-    index.openCursor().onsuccess = (e) => {
+    request.onsuccess = (e) => {
       const cursor = e.target.result;
 
       if (cursor) {
@@ -126,7 +123,7 @@ export function getEligibleAnime(language = "english", challengeStartDate = null
       }
     };
 
-    index.openCursor().onerror = (e) => {
+    request.onerror = (e) => {
       reject(e.target.error);
     };
   });

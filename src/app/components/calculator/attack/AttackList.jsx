@@ -6,12 +6,12 @@ const AttackList = ({animeList, setAnimeList, date, language, results}) => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    getEligibleAnime(language, date)
+    getEligibleAnime(date)
       .then((res) => {
         setSearchResults(res);
       })
       .catch((err) => console.error(err));
-  }, [date, language]);
+  }, [date]);
 
   return (
     <div className="w-full flex flex-col gap-4">
