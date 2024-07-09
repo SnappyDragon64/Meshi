@@ -9,6 +9,7 @@ import {ChallengeContext} from "@/context/ChallengeContext.jsx";
 import {calculateDamage} from "@/util/DamageCalculator.js";
 import {getWaveInfo, toDate, toDateJson} from "@/util/DataConverter.js";
 import {generateChallengeCode} from "@/util/ChallengeCodeGenerator.js";
+import {getAnimeList} from "@/services/IndexedDB.js";
 
 const Calculator = () => {
   const {challenge} = useContext(ChallengeContext);
@@ -77,6 +78,19 @@ const Calculator = () => {
       waveCleared: waveCleared,
     })
   }, [animeList, wave, challenge.waves]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const animeIdList = animeList.map((anime) => anime.id);
+
+      getAnimeList(animeIdList)
+        .then((res) => {
+          setAnimeList(res);
+        });
+    }
+
+    fetchData();
+  }, []);
 
   const addNewItem = () => {
     const list = [...animeList, null];

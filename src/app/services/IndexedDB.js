@@ -9,8 +9,7 @@ export async function initIndexedDB() {
 
     request.onupgradeneeded = (e) => {
       db = e.target.result;
-
-      const animeStore = db.createObjectStore("anime", {keyPath: "id"});
+      db.createObjectStore("anime", {keyPath: "id"});
     };
 
     request.onsuccess = (e) => {
@@ -96,7 +95,7 @@ export function getEligibleAnime(challengeStartDate = null) {
     const transaction = db.transaction("anime", "readonly");
     const animeStore = transaction.objectStore("anime");
     const request = animeStore.openCursor();
-    const result = [];
+    const results = [];
 
     request.onsuccess = (e) => {
       const cursor = e.target.result;
@@ -112,19 +111,59 @@ export function getEligibleAnime(challengeStartDate = null) {
             // Planned anime are eligible
             // Completed anime are eligible if they were started after the challenge start date
             if (anime.status === MediaListStatus.PLANNING || (!challengeStartDate || toDate(anime.startedAt) >= challengeStartDate)) {
-              result.push(anime);
+              results.push(anime);
             }
           }
         }
 
         cursor.continue();
       } else {
-        resolve(result);
+        resolve(results);
       }
     };
 
     request.onerror = (e) => {
       reject(e.target.error);
     };
+  });
+}
+
+export function getAnimeList(ids) {
+  return new Promise((resolve, reject) => {
+    if (!db) {
+      reject("IndexedDB is not initialized");
+      return;
+    }
+
+    const transaction = db.transaction("anime", "readonly");
+    const animeStore = transaction.objectStore("anime");
+
+    const results = [];
+    let current = 0;
+
+    ids.forEach((key) => {
+      const request = animeStore.get(key);
+
+      request.onsuccess = (event) => {
+        const result = event.target.result;
+        if (result !== undefined) {
+          results.push(result);
+        }
+
+        current += 1;
+
+        if (current === ids.length) {
+          resolve(results);
+        }
+      };
+
+      request.onerror = () => {
+        current += 1;
+
+        if (current === ids.length) {
+          resolve(results);
+        }
+      };
+    });
   });
 }
