@@ -81,7 +81,7 @@ const Calculator = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const animeIdList = animeList.map((anime) => anime.id);
+      const animeIdList = animeList.map((anime) => anime == null ? null : anime.id);
 
       getAnimeList(animeIdList)
         .then((res) => {

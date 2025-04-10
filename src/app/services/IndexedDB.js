@@ -142,6 +142,15 @@ export function getAnimeList(ids) {
     let current = 0;
 
     ids.forEach((key) => {
+      if (key == null) {
+        results.push(null);
+        current += 1;
+        if (current === ids.length) {
+          resolve(results);
+        }
+        return;
+      }
+
       const request = animeStore.get(key);
 
       request.onsuccess = (event) => {
