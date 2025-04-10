@@ -14,12 +14,18 @@ export const ChallengeProvider = ({children}) => {
 
   useEffect(() => {
     const loadDefaultChallenge = async () => {
-      const trainingGroundsChallenge = getChallenge("training_grounds");
-      setChallenge(trainingGroundsChallenge);
+      let challengeId = localStorage.getItem("challenge");
+      challengeId = challengeId ? challengeId : "training_grounds"
+      const defaultChallenge = getChallenge(challengeId);
+      setChallenge(defaultChallenge);
     };
 
     loadDefaultChallenge().then(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("challenge", challenge.id)
+  }, [challenge]);
 
   if (isLoading) {
     return <Spinner/>;
