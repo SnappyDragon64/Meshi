@@ -53,6 +53,9 @@ export async function fetchList(username, status) {
                       duration
                       format
                       genres
+                      tags {
+                        name
+                      }
                       coverImage {
                         medium
                         color
