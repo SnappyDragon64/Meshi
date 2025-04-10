@@ -7,8 +7,13 @@ export function getChallenge(id) {
   return repackage(challenge);
 }
 
+export function getAllChallenges() {
+  return CHALLENGE_REGISTRY.getAll().sort((a, b) => a.index - b.index);
+}
+
 function repackage(challenge) {
   return {
+    id: challenge.id,
     name: challenge.name,
     enemies: challenge.enemies.map((id) => {
       return getEnemy(id);
