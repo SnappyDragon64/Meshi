@@ -1,4 +1,6 @@
 {
+  "id": "training_grounds",
+  "index": 0,
   "name": "Dungeon Challenge: Training Grounds",
   "enemies": [
     "boring_dummy",
