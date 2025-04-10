@@ -8,6 +8,17 @@ function checkCondition(attack, condition) {
   const attackAttributeValue = attack[attribute];
 
   switch (type) {
+    case "id_does_not_contain_digits": {
+      const valueStr = value.toString();
+
+      for (const digit of attackAttributeValue) {
+        if (valueStr.includes(digit.toString())) {
+          return false;
+        }
+      }
+
+      return true;
+    }
     case "greater_than":
       return attackAttributeValue > value;
     case "less_than":
