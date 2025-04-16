@@ -1,0 +1,1 @@
+const s="slimy_floors",l=1,e="Dungeon Challenge: Slimy Floors",o=["innocent_slime","mischievous_slime","sleazy_slime"],i=["slimy_floors_wave_1","slimy_floors_wave_2","slimy_floors_wave_3"],n={id:s,index:1,name:e,enemies:o,waves:i};export{n as default,o as enemies,s as id,l as index,e as name,i as waves};

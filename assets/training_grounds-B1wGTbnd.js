@@ -1,1 +1,0 @@
-const n="Dungeon Challenge: Training Grounds",e=["boring_dummy","menacing_dummy","manequeen"],a=["training_grounds_wave_1","training_grounds_wave_2","training_grounds_wave_3"],i={name:n,enemies:e,waves:a};export{i as default,e as enemies,n as name,a as waves};
