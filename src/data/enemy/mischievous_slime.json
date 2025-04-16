@@ -1,0 +1,31 @@
+{
+  "name": "Mischievous Slime",
+  "hp": 115,
+  "weaknesses": [
+    {
+      "text": "Genre “Ecchi” x2",
+      "multiplier": 2,
+      "conditions": [
+        {
+          "type": "includes",
+          "attribute": "genres",
+          "value": "Ecchi"
+        }
+      ]
+    }
+  ],
+  "resistances": [
+    {
+      "text": "Genre “Slice of Life” x0.5",
+      "multiplier": 0.5,
+      "conditions": [
+        {
+          "type": "includes",
+          "attribute": "genres",
+          "value": "Slice of Life"
+        }
+      ]
+    }
+  ],
+  "image": "./assets/enemy/mischievous_slime.png"
+}

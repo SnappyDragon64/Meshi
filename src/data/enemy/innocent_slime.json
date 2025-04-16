@@ -1,0 +1,31 @@
+{
+  "name": "Innocent Slime",
+  "hp": 43,
+  "weaknesses": [
+    {
+      "text": "Tag “Iyashikei” x1.5",
+      "multiplier": 1.5,
+      "conditions": [
+        {
+          "type": "includes",
+          "attribute": "tags",
+          "value": "Iyashikei"
+        }
+      ]
+    }
+  ],
+  "resistances": [
+    {
+      "text": "Genre “Action” x0.5",
+      "multiplier": 0.5,
+      "conditions": [
+        {
+          "type": "includes",
+          "attribute": "genres",
+          "value": "Action"
+        }
+      ]
+    }
+  ],
+  "image": "./assets/enemy/innocent_slime.png"
+}

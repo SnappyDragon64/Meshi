@@ -1,0 +1,31 @@
+{
+  "name": "Sleazy Slime",
+  "hp": 200,
+  "weaknesses": [
+    {
+      "text": "Tag “Nudity” x3",
+      "multiplier": 3,
+      "conditions": [
+        {
+          "type": "includes",
+          "attribute": "tags",
+          "value": "Nudity"
+        }
+      ]
+    }
+  ],
+  "resistances": [
+    {
+      "text": "AniList ID not including digits “6“ or “9“ x0.7",
+      "multiplier": 0.7,
+      "conditions": [
+        {
+          "type": "id_does_not_contain_digits",
+          "attribute": "id",
+          "value": [6, 9]
+        }
+      ]
+    }
+  ],
+  "image": "./assets/enemy/sleazy_slime.png"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "slimy_floors",
+  "index": 1,
+  "name": "Dungeon Challenge: Slimy Floors",
+  "enemies": [
+    "innocent_slime",
+    "mischievous_slime",
+    "sleazy_slime"
+  ],
+  "waves": [
+    "slimy_floors_wave_1",
+    "slimy_floors_wave_2",
+    "slimy_floors_wave_3"
+  ]
+}
