@@ -1,0 +1,1 @@
+const n="training_grounds",s=0,e="Dungeon Challenge: Training Grounds",i=["boring_dummy","menacing_dummy","mannequeen"],a=["training_grounds_wave_1","training_grounds_wave_2","training_grounds_wave_3"],g={id:n,index:0,name:e,enemies:i,waves:a};export{g as default,i as enemies,n as id,s as index,e as name,a as waves};
