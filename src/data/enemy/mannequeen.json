@@ -1,5 +1,5 @@
 {
-  "name": "Manequeen",
+  "name": "Mannequeen",
   "hp": 175,
   "weaknesses": [
     {
@@ -27,5 +27,5 @@
       ]
     }
   ],
-  "image": "./assets/enemy/manequeen.png"
+  "image": "./assets/enemy/mannequeen.png"
 }
